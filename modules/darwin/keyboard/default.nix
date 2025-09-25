@@ -13,7 +13,7 @@ in {
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enableKeyMapping {
     system.keyboard.userKeyMapping = [
       (lib.mkIf cfg.nonUS.remapComparisonSigns {
         HIDKeyboardModifierMappingSrc = 30064771125;
