@@ -2,7 +2,8 @@
   description = "Everything Nix from Br1ght0ne";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
 
     # The name "snowfall-lib" is required due to how Snowfall Lib processes your
     # flake's inputs.
@@ -32,7 +33,8 @@
     };
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     inputs.snowfall-lib.mkFlake {
       inherit inputs;
       src = ./.;
@@ -68,7 +70,7 @@
       outputs-builder = channels: {
         # Outputs in the outputs builder are transformed to support each system. This
         # entry will be turned into multiple different outputs like `formatter.x86_64-linux.*`.
-        formatter = channels.nixpkgs.alejandra;
+        formatter = channels.nixpkgs.nixfmt;
       };
     };
 }

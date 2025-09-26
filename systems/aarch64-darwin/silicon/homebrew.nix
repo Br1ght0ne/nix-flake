@@ -1,14 +1,23 @@
 {
   homebrew = {
     enable = true;
-    taps = ["br1ght0ne/cdda"];
-    brews = ["ansible"];
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+      upgrade = true;
+    };
+    taps = [ "br1ght0ne/cdda" ];
+    brews = [ "ansible" ];
+    caskArgs.require_sha = true;
     casks = [
       "1password"
       "1password-cli"
       "alt-tab"
       "android-studio"
-      "anki"
+      {
+        name = "anki";
+        args.no_quarantine = true;
+      }
       "audacity"
       "balenaetcher"
       "beekeeper-studio"
@@ -18,9 +27,9 @@
       "bruno"
       "calibre"
       "cataclysm"
+      "cataclysm-rc"
       "cataclysm-bn-nightly"
       "cataclysm-tlg"
-      "chromedriver"
       "claude"
       "db-browser-for-sqlite"
       "deepl"
@@ -28,6 +37,7 @@
       "dotnet-sdk"
       "dungeon-crawl-stone-soup-tiles"
       "element"
+      "emacs-app"
       "flox"
       "flux-app"
       "font-cozette"
@@ -40,12 +50,10 @@
       "ghostty"
       "gimp"
       "google-chrome"
-      "gstreamer-runtime"
       "heroic"
       "ilspy"
       "imhex"
       "inkscape"
-      "jordanbaird-ice"
       "latest"
       "ledger-live"
       "losslesscut"
@@ -73,7 +81,6 @@
       "shattered-pixel-dungeon"
       "shortcat"
       "signal"
-      "steamcmd"
       "tailscale-app"
       "telegram"
       "thunderbird"
@@ -84,9 +91,8 @@
       "warp"
       "wezterm"
       "whatsapp"
-      "wine-crossover"
-      "wine-stable"
       "xonotic"
+      "yaak"
       "zed"
       "zen"
     ];

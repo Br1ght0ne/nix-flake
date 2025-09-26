@@ -56,9 +56,9 @@
         alt-shift-minus = "resize smart -50";
         alt-shift-equal = "resize smart +50";
         alt-shift-semicolon = "mode service";
-        alt-shift-tab = "workspace --wrap-around prev";
         alt-slash = "layout tiles horizontal vertical";
-        alt-tab = "workspace --wrap-around next";
+        alt-n = "workspace --wrap-around next";
+        alt-p = "workspace --wrap-around prev";
       };
       mode.monitors.binding = {
         # Number keys
