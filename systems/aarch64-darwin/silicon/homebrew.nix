@@ -6,6 +6,7 @@
       cleanup = "zap";
       upgrade = true;
     };
+    # global.autoUpdate = true;
     taps = [ "br1ght0ne/cdda" ];
     brews = [ "ansible" ];
     caskArgs.require_sha = true;
