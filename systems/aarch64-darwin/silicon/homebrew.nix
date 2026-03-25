@@ -2,23 +2,27 @@
   homebrew = {
     enable = true;
     onActivation = {
-      autoUpdate = true;
-      cleanup = "zap";
-      upgrade = true;
+      autoUpdate = false;
+      cleanup = "check";
+      upgrade = false;
     };
     # global.autoUpdate = true;
-    taps = [ "br1ght0ne/cdda" ];
-    brews = [ "ansible" ];
+    taps = [
+      "anomalyco/tap"
+      "br1ght0ne/cdda"
+    ];
+    brews = [
+      "ansible"
+      "opencode"
+      "paneru"
+    ];
     caskArgs.require_sha = true;
     casks = [
       "1password"
       "1password-cli"
       "alt-tab"
       "android-studio"
-      {
-        name = "anki";
-        args.no_quarantine = true;
-      }
+      "anki"
       "audacity"
       "balenaetcher"
       "beekeeper-studio"
@@ -56,7 +60,7 @@
       "imhex"
       "inkscape"
       "latest"
-      "ledger-live"
+      "ledger-wallet"
       "losslesscut"
       "lunar"
       "maccy"
@@ -73,7 +77,7 @@
       "orbstack"
       "orion"
       "parsec"
-      "postgres-unofficial"
+      "postgres-app"
       "postico"
       "powershell"
       "protonvpn"
@@ -108,7 +112,6 @@
       "Gemini 2" = 1090488118;
       "Keymapp" = 6472865291;
       "Keynote" = 409183694;
-      "LanguageTool" = 1534275760;
       "Negative" = 1378123825;
       "Numbers" = 409203825;
       "Pages" = 409201541;

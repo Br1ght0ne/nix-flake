@@ -1,0 +1,339 @@
+<<< /run/current-system
+>>> /nix/store/sc2hpnf33km60f1ckh3gkpzn8b4nhmh9-darwin-system-26.05.da529ac
+
+CHANGED
+[U.] abseil-cpp                      20250814.1, 20250814.1-dev -> 20260107.1, 20260107.1-dev
+[U.] ada                             3.4.1 -> 3.4.3
+[U*] aerospace                       0.20.2-Beta -> 0.20.3-Beta
+[D.] apple-sdk                       14.4 ×2 -> 14.4
+[U.] ast-grep                        0.40.5 -> 0.41.1
+[U.] atuin                           18.11.0 -> 18.13.3
+[U.] binaryen                        125 -> 126
+[U.] boehm-gc                        8.2.8 -> 8.2.12
+[U.] boost                           1.87.0 -> 1.89.0
+[U.] broot                           1.54.0 -> 1.55.0
+[D.] bzip2                           1.0.8 ×2 -> 1.0.8
+[U.] cachix                          1.10.1-bin -> 1.11.0-bin
+[U.] carapace                        1.6.0 -> 1.6.3
+[D.] cctools                         1010.6 ×2, 1010.6-libtool ×2 -> 1010.6, 1010.6-libtool
+[D.] cctools-binutils-darwin         1010.6 ×2 -> 1010.6
+[D.] cctools-binutils-darwin-wrapper 1010.6 ×2 -> 1010.6
+[D.] cjson                           1.7.19 ×2 -> 1.7.19
+[C.] coreutils                       9.8, 9.9 -> 9.10
+[D.] cups-headers                    2.4.16 ×2 -> 2.4.16
+[C.] curl                            8.17.0 ×2, 8.17.0-bin, 8.18.0 -> 8.18.0 ×2
+[U.] curl-impersonate                1.4.3 -> 1.5.1
+[U.] darwin-system                   26.05.aff4c00 -> 26.05.da529ac
+[U.] dasel                           2.8.1 -> 3.3.1
+[D.] dejavu-fonts-minimal            2.37 ×2 -> 2.37
+[U.] delta                           0.18.2 -> 0.19.1
+[U.] deno                            2.6.8 -> 2.6.10
+[U.] devenv                          1.11.2 -> 2.0.5
+[U.] difftastic                      0.67.0 -> 0.68.0
+[U.] discordo                        0-unstable-2026-02-09 -> 0-unstable-2026-02-26
+[D.] dns-root-data                   2025-04-14 ×2 -> 2025-04-14
+[U.] dos2unix                        7.5.2 -> 7.5.4
+[U.] dua                             2.33.0 -> 2.34.0
+[U.] entr                            5.7 -> 5.8
+[D.] expand-response-params          <none> ×2 -> <none>
+[U.] expat                           2.7.3 ×2 -> 2.7.4
+[U.] fd                              10.3.0 -> 10.4.2
+[D.] fontconfig                      2.17.1 ×2, 2.17.1-lib ×2 -> 2.17.1, 2.17.1-lib
+[D.] freetype                        2.13.3 ×2 -> 2.13.3
+[D.] fribidi                         1.0.16 ×2 -> 1.0.16
+[U.] fzf                             0.67.0, 0.67.0-man -> 0.70.0, 0.70.0-man
+[D.] gdbm                            1.26-lib ×2 -> 1.26-lib
+[U.] gdk-pixbuf                      2.44.4 -> 2.44.5
+[U.] gettext                         0.25.1 ×2 -> 0.26
+[U.] gh                              2.86.0 -> 2.88.1
+[D.] giflib                          5.2.2 ×2 -> 5.2.2
+[C.] git                             2.52.0, 2.52.0-doc, 2.51.2, 2.51.2-doc -> 2.53.0, 2.53.0-doc
+[U.] git-minimal                     2.52.0 -> 2.53.0
+[U.] gitleaks                        8.30.0 -> 8.30.1
+[D.] glib                            2.86.3 ×2 -> 2.86.3
+[D.] gmp-with-cxx                    6.3.0 ×2 -> 6.3.0
+[D.] gnugrep                         3.12 ×2 -> 3.12
+[U.] gnupg                           2.4.8 -> 2.4.9, 2.4.9-man
+[D.] gnused                          4.9 ×2 -> 4.9
+[U.] gnutls                          3.8.11 ×2 -> 3.8.12
+[D.] graphite2                       1.3.14 ×2 -> 1.3.14
+[D.] gzip                            1.14 ×2 -> 1.14
+[U.] hledger                         1.51.1 -> 1.51.2
+[U.] hwloc                           2.12.2-lib -> 2.13.0-lib
+[U.] iana-etc                        20250505 -> 20251215
+[U.] ijq                             1.2.0 -> 1.3.0
+[U.] jujutsu                         0.38.0 -> 0.39.0
+[U.] just                            1.46.0, 1.46.0-man -> 1.47.1, 1.47.1-man
+[U.] katana                          1.4.0 -> 1.5.0
+[D.] krb5                            1.22.1-lib ×2 -> 1.22.1-lib
+[D.] lame                            3.100-lib ×2 -> 3.100-lib
+[U.] lazydocker                      0.24.4 -> 0.25.0
+[U.] lazygit                         0.59.0 -> 0.60.0
+[U.] lcms2                           2.17 ×2 -> 2.18
+[D.] ld64                            954.16 ×2, 954.16-lib ×2 -> 954.16, 954.16-lib
+[D.] lerc                            4.0.0 ×2 -> 4.0.0
+[U.] less                            685 -> 692
+[D.] libSystem-B                     <none> ×2 -> <none>
+[D.] libaom                          3.12.1 ×2 -> 3.12.1
+[D.] libass                          0.17.4 ×2 -> 0.17.4
+[U.] libblake3                       1.8.2 -> 1.8.3
+[C.] libbluray                       1.4.0, 1.3.4 -> 1.4.1
+[D.] libdeflate                      1.25 ×2 -> 1.25
+[D.] libevent                        2.1.12 ×2 -> 2.1.12
+[D.] libffi                          40 ×2 -> 40
+[U.] libgpg-error                    1.55 -> 1.58
+[D.] libiconv                        1.18 ×2, 109.100.2 ×2, 109.100.2-dev ×2 -> 1.18, 109.100.2, 109.100.2-dev
+[D.] libidn2                         2.3.8 ×2 -> 2.3.8
+[D.] libjack2                        1.9.22 ×2 -> 1.9.22
+[U.] libluv                          1.51.0-1 -> 1.51.0-2
+[D.] libogg                          1.3.6 ×2 -> 1.3.6
+[D.] libopenmpt                      0.8.4 ×2 -> 0.8.4
+[U.] libopus                         1.5.2 ×2 -> 1.6.1
+[C.] libpng-apng                     1.6.53, 1.6.54 -> 1.6.55
+[D.] libpsl                          0.21.5 ×2 -> 0.21.5
+[D.] libresolv                       91 ×2, 91-dev ×2 -> 91, 91-dev
+[D.] librist                         0.2.11 ×2 -> 0.2.11
+[D.] libsamplerate                   0.2.2 ×2 -> 0.2.2
+[D.] libsbuf                         14.1.0 ×2, 14.1.0-dev ×2 -> 14.1.0, 14.1.0-dev
+[U.] libsodium                       1.0.20-unstable-2025-12-31 -> 1.0.21-unstable-2026-02-11
+[D.] libssh                          0.11.3 ×2 -> 0.11.3
+[D.] libssh2                         1.11.1 ×2 -> 1.11.1
+[D.] libtasn1                        4.21.0 ×2 -> 4.21.0
+[D.] libtheora                       1.2.0 ×2 -> 1.2.0
+[D.] libtiff                         4.7.1 ×2 -> 4.7.1
+[D.] libunistring                    1.4.1 ×2 -> 1.4.1
+[D.] libutil                         72 ×2 -> 72
+[U.] libuv                           1.51.0, 1.51.0-dev -> 1.52.0, 1.52.0-dev
+[D.] libvmaf                         3.0.0 ×2 -> 3.0.0
+[D.] libvorbis                       1.3.7 ×2 -> 1.3.7
+[U.] libvpx                          1.15.2 ×2 -> 1.16.0
+[D.] libwebp                         1.6.0 ×4 -> 1.6.0 ×2
+[U.] libx11                          1.8.12 ×2 -> 1.8.13
+[D.] libxau                          1.0.12 ×2 -> 1.0.12
+[D.] libxcb                          1.17.0 ×2 -> 1.17.0
+[D.] libxcrypt                       4.5.2 ×2 -> 4.5.2
+[D.] libxdmcp                        1.1.5 ×2 -> 1.1.5
+[U.] libxext                         1.3.6 ×2 -> 1.3.7
+[D.] libxml2                         2.15.1 ×2 -> 2.15.1
+[U.] libxpm                          3.5.17 -> 3.5.18
+[U.] llhttp                          9.3.0, 9.3.0-dev -> 9.3.1, 9.3.1-dev
+[D.] mailcap                         2.1.54 ×2 -> 2.1.54
+[D.] mbedtls                         3.6.5 ×2 -> 3.6.5
+[U.] mercurial                       7.1 -> 7.1.2
+[U.] miniserve                       0.32.0 -> 0.33.0
+[D.] mpdecimal                       4.0.1 ×2 -> 4.0.1
+[D.] mpg123                          1.33.4 ×2 -> 1.33.4
+[D.] nettle                          3.10.2 ×2 -> 3.10.2
+[D.] nghttp2                         1.67.1-lib ×3 -> 1.67.1-lib ×2
+[C.] nghttp3                         1.12.0, 1.13.1-dev, 1.13.1 -> 1.14.0, 1.14.0-dev
+[C.] ngtcp2                          1.17.0, 1.18.0-dev, 1.18.0 -> 1.19.0, 1.19.0-dev
+[U.] nh                              4.2.0 -> 4.3.0
+[U.] nh-unwrapped                    4.2.0 -> 4.3.0
+[U.] nix-cmd                         2.30.4+1 -> 2.32
+[U.] nix-expr                        2.30.4+1 -> 2.32
+[U.] nix-fetchers                    2.30.4+1 -> 2.32
+[U.] nix-flake                       2.30.4+1 -> 2.32
+[U.] nix-init                        0.3.3 -> 0.3.4
+[U.] nix-main                        2.30.4+1 -> 2.32
+[U.] nix-search-tv                   2.2.6 -> 2.2.7
+[U.] nix-store                       2.30.4+1 -> 2.32
+[U.] nix-util                        2.30.4+1 -> 2.32
+[U.] nix-your-shell                  1.4.8 -> 1.4.9
+[U*] nix-zsh-completions             0.5.1 -> 0.5.1-unstable-2025-12-12
+[U.] nixfmt-tree                     <none> -> 2.4.1
+[U.] nodejs                          24.13.0 -> 24.14.0
+[U.] nss-cacert                      3.119.1 -> 3.121
+[U.] nushell                         0.110.0 -> 0.111.0
+[D.] ocl-icd                         2.3.4 ×2 -> 2.3.4
+[U.] openapv                         0.2.0.4 -> 0.2.1.1
+[D.] openjpeg                        2.5.4 ×2 -> 2.5.4
+[C.] openssl                         3.6.0-bin, 3.6.0-dev, 3.6.0 -> 3.6.1-bin, 3.6.1-dev
+[U.] p11-kit                         0.25.10 ×2 -> 0.26.1
+[D.] pcre2                           10.46 ×2 -> 10.46
+[U.] perl5.42.0-Crypt-URandom        0.54 -> 0.55
+[U.] presenterm                      0.15.1 -> 0.16.1
+[U.] protobuf                        32.1 -> 34.0
+[U.] publicsuffix-list               0-unstable-2025-12-28 ×02 -> 0-unstable-2026-03-02
+[U.] python3                         3.12.12, 3.12.12-env, 3.13.11 ×2, 3.13.11-env ×2 -> 3.12.13, 3.12.13-env, 3.13.12, 3.13.12-env
+[U.] python3.12-cryptography         46.0.3 -> 46.0.5
+[U.] python3.12-grpcio               1.76.0 -> 1.78.0
+[U.] python3.12-numpy                2.3.5 -> 2.4.2
+[U.] python3.12-protobuf             6.33.3 -> 7.34.0
+[U.] python3.12-pycparser            2.23 -> 3.00
+[U.] python3.13-argcomplete          3.6.2 -> 3.6.3
+[U.] python3.13-certifi              2025.07.14 -> 2026.01.04
+[U.] python3.13-cryptography         46.0.3 -> 46.0.5
+[U.] python3.13-fido2                2.0.0 -> 2.1.1
+[U.] python3.13-filelock             3.20.1 -> 3.20.3
+[U.] python3.13-google-re2           1.1.20250805 -> 1.1.20251105
+[U.] python3.13-jaraco-context       6.0.1 -> 6.1.0
+[U.] python3.13-jaraco-functools     4.2.1 -> 4.4.0
+[U.] python3.13-more-itertools       10.7.0 -> 10.8.0
+[U.] python3.13-multidict            6.7.0 -> 6.7.1
+[U.] python3.13-platformdirs         4.5.0 -> 4.5.1
+[U.] python3.13-psutil               7.1.3 -> 7.2.1
+[U.] python3.13-pycparser            2.23 -> 3.00
+[U.] python3.13-regex                2025.11.3 -> 2026.2.19
+[U.] python3.13-rich                 14.2.0 -> 14.3.3
+[U.] python3.13-setuptools           80.9.0 -> 80.10.1
+[U.] python3.13-tomlkit              0.13.3 -> 0.14.0
+[U.] python3.13-urllib3              2.6.0 -> 2.6.3
+[U.] python3.13-websockets           15.0.1 -> 16.0
+[U.] python3.13-yt-dlp-ejs           0.4.0 -> 0.8.0
+[U.] q                               0.19.11 -> 0.19.12
+[U.] rclone                          1.73.0, 1.73.0-man -> 1.73.2, 1.73.2-man
+[U.] re2                             2025-08-12 -> 2025-11-05
+[U.] shfmt                           3.12.0 -> 3.13.0
+[U.] simdjson                        4.2.4 -> 4.3.1
+[D.] soxr                            0.1.3 ×2 -> 0.1.3
+[D.] speex                           1.2.1 ×2 -> 1.2.1
+[D.] srt                             1.5.4 ×2 -> 1.5.4
+[U.] stylua                          2.3.1 -> 2.4.0
+[D.] svt-av1                         3.1.2 ×2 -> 3.1.2
+[U.] television                      0.15.2 -> 0.15.3
+[U.] tinymist                        0.14.10 -> 0.14.12
+[U.] topgrade                        16.9.0 -> 17.1.0
+[U.] treefmt                         2.4.0 -> 2.4.1
+[U.] trufflehog                      3.93.2 -> 3.93.8
+[U.] typos                           1.43.4 -> 1.44.0
+[U.] tzdata                          2025c ×2 -> 2026a
+[D.] unbound                         1.24.2-lib ×2 -> 1.24.2-lib
+[U.] uv                              0.10.2 -> 0.10.12
+[D.] vid.stab                        1.1.1-unstable-2025-08-21 ×2 -> 1.1.1-unstable-2025-08-21
+[D.] x264                            0-unstable-2025-01-03-lib ×2 -> 0-unstable-2025-01-03-lib
+[D.] x265                            4.1 ×2 -> 4.1
+[U.] xan                             0.55.0 -> 0.56.0
+[D.] xar-minimal                     501-lib ×2 -> 501-lib
+[D.] xcbuild                         0.1.1-unstable-2019-11-20 ×2, 0.1.1-unstable-2019-11-20-xcrun ×2 -> 0.1.1-unstable-2019-11-20, 0.1.1-unstable-2019-11-20-xcrun
+[U.] yt-dlp                          2026.02.04 -> 2026.03.17
+[U.] zellij                          0.43.1 -> 0.44.0
+[D.] zimg                            3.0.6 ×2 -> 3.0.6
+[U.] zlib                            1.3.1 ×2, 1.3.1-dev -> 1.3.2, 1.3.2-dev, 1.3.2-static
+[C.] zlib-ng                         2.3.2, 2.2.5 -> 2.3.3
+[D.] zstd                            1.5.7 ×2 -> 1.5.7
+[D.] zvbi                            0.2.44 ×2 -> 0.2.44
+
+ADDED
+[A.] etc                             099-host-keys.conf
+[A.] helix-default-runtime           <none>
+[A.] helix-grammars                  <none>
+[A.] helix-runtime                   <none>
+[A.] helix-unwrapped                 25.07.1
+[A.] hidapi                          0.15.0
+[A.] jjui                            0.10.2
+[A.] lazyjj                          0.6.1
+[A.] ldns                            1.8.4
+[A.] libcbor                         0.13.0
+[A.] libedit                         20251016-3.1
+[A.] libfido2                        1.16.0
+[A.] nix-cmd-c                       2.32
+[A.] nix-expr-c                      2.32
+[A.] nix-fetchers-c                  2.32
+[A.] nix-flake-c                     2.32
+[A.] nix-main-c                      2.32
+[A.] nix-store-c                     2.32
+[A.] nix-util-c                      2.32
+[A.] nodejs-slim                     24.14.0, 24.14.0-corepack, 24.14.0-npm
+[A.] openssh                         10.2p1
+[A.] simdutf                         8.0.0
+
+REMOVED
+[R.] 7zz                             25.01
+[R.] bash                            5.3p3
+[R*] bash-interactive                5.3p3
+[R.] bash-language-server            5.6.0
+[R.] brotli                          1.1.0-lib
+[R.] chafa                           1.18.1, 1.18.1-bin
+[R.] clang                           21.1.7, 21.1.7-lib
+[R.] clang-wrapper                   21.1.7
+[R.] compiler-rt-libc                21.1.7, 21.1.7-dev
+[R.] dav1d                           1.5.2
+[R.] devenv-nix                      2.30.4
+[R.] djvulibre                       3.5.29, 3.5.29-lib
+[R.] ffmpeg                          6.1.3-data, 6.1.3-lib, 8.0.1-bin, 8.0.1-data, 8.0.1-lib
+[R.] fftw-double                     3.3.10
+[R.] file                            5.45
+[R.] harfbuzz                        12.1.0
+[R.] imagemagick                     7.1.2-12
+[R.] imath                           3.2.1
+[R.] json-c                          0.18
+[R.] libcxx                          19.1.2+apple-sdk-15.5
+[R.] libde265                        1.0.16
+[R.] libheif                         1.20.2-lib
+[R.] libice                          1.1.2
+[R.] libjpeg-turbo                   3.1.2
+[R.] libjxl                          0.11.1
+[R.] liblqr                          1-0.4.2
+[R.] libraqm                         0.10.3
+[R.] libraw                          0.21.5b-lib
+[R.] librsvg                         2.61.3
+[R.] libsixel                        1.10.5
+[R.] libsm                           1.2.6
+[R.] libvdpau                        1.5 ×2
+[R.] libwebsockets                   4.4.1
+[R.] libxt                           1.3.1
+[R.] livekit-libwebrtc               125-unstable-2025-07-25
+[R.] llvm                            21.1.7, 21.1.7-lib
+[R.] ncurses                         6.5, 6.5-dev, 6.5-man
+[R.] nix                             2.30.4+1
+[R.] nspr                            4.38.2
+[R.] nss                             3.112.2
+[R.] openexr                         3.3.5
+[R.] openmp                          21.1.7, 21.1.7-dev
+[R.] perl                            5.40.0
+[R.] perl5.40.0-Authen-SASL          2.1900
+[R.] perl5.40.0-CGI                  4.59
+[R.] perl5.40.0-CGI-Fast             2.16
+[R.] perl5.40.0-Clone                0.46
+[R.] perl5.40.0-Crypt-URandom        0.54
+[R.] perl5.40.0-Digest-HMAC          1.05
+[R.] perl5.40.0-Encode-Locale        1.05
+[R.] perl5.40.0-FCGI                 0.82
+[R.] perl5.40.0-FCGI-ProcManager     0.28
+[R.] perl5.40.0-File-Listing         6.16
+[R.] perl5.40.0-HTML-Parser          3.81
+[R.] perl5.40.0-HTML-TagCloud        0.38
+[R.] perl5.40.0-HTML-Tagset          3.20
+[R.] perl5.40.0-HTTP-CookieJar       0.014
+[R.] perl5.40.0-HTTP-Cookies         6.10
+[R.] perl5.40.0-HTTP-Date            6.06
+[R.] perl5.40.0-HTTP-Message         6.45
+[R.] perl5.40.0-HTTP-Negotiate       6.01
+[R.] perl5.40.0-IO-HTML              1.004
+[R.] perl5.40.0-IO-Socket-SSL        2.083
+[R.] perl5.40.0-LWP-MediaTypes       6.04
+[R.] perl5.40.0-Mozilla-CA           20230821
+[R.] perl5.40.0-Net-HTTP             6.23
+[R.] perl5.40.0-Net-SMTP-SSL         1.04
+[R.] perl5.40.0-Net-SSLeay           1.92
+[R.] perl5.40.0-TermReadKey          2.38
+[R.] perl5.40.0-TimeDate             2.33
+[R.] perl5.40.0-Try-Tiny             0.31
+[R.] perl5.40.0-URI                  5.21
+[R.] perl5.40.0-WWW-RobotRules       6.02
+[R.] perl5.40.0-libnet               3.15
+[R.] perl5.40.0-libwww-perl          6.72
+[R.] poppler-data                    0.4.12
+[R.] poppler-utils                   25.10.0
+[R.] potrace                         1.16
+[R.] python3.13-greenlet             3.2.3
+[R.] python3.13-jeepney              0.9
+[R.] python3.13-json5                0.12.1
+[R.] python3.13-msgpack              1.1.1
+[R.] python3.13-pynvim               0.6.0
+[R.] python3.13-secretstorage        3.3.3
+[R.] readline                        8.3p1
+[R.] resvg                           0.46.0
+[R.] sdl2-compat                     2.32.60, 2.32.62
+[R.] sdl3                            3.2.28-lib, 3.4.0-lib
+[R.] sqlite                          3.50.4
+[R.] ttyd                            1.7.7
+[R.] vhs                             0.10.0
+[R.] xz                              5.8.1
+[R.] yazi                            26.1.22 ×2
+[R.] zed-editor                      0.218.6
+[R.] zed-editor-wrapped              0.218.6
+[R.] zed-user-settings               <none>
+
+SIZE: 7.82 GiB -> 5.81 GiB
+DIFF: -2.02 GiB

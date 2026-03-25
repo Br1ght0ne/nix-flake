@@ -6,7 +6,8 @@
   ...
 }: {
   programs.zed-editor = {
-    enable = true;
+    # TODO: something needs ffmpeg which is not built, like for yazi and vhs
+    enable = false;
     package = inputs.nixpkgs-stable.legacyPackages.${system}.zed-editor;
     extraPackages = with pkgs; [bash-language-server nil nixd];
     userSettings = {
