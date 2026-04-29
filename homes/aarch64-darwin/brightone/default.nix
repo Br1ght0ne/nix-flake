@@ -40,7 +40,7 @@ in
       ]
       # Version management, GitHub and security
       ++ [
-        debase
+        # debase # broken compilation
         delta
         difftastic
         git
