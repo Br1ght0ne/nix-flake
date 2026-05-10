@@ -10,8 +10,10 @@
     taps = [
       "anomalyco/tap"
       "br1ght0ne/cdda"
+      "eugene1g/safehouse"
     ];
     brews = [
+      "eugene1g/safehouse/agent-safehouse"
       "ansible"
       "opencode"
       "paneru"
@@ -36,6 +38,7 @@
       "cataclysm-bn-nightly"
       "cataclysm-tlg"
       "claude"
+      "codexbar"
       "db-browser-for-sqlite"
       "deepl"
       "dosbox"
