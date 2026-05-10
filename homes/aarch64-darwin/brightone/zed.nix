@@ -4,12 +4,17 @@
   system,
   inputs,
   ...
-}: {
+}:
+{
   programs.zed-editor = {
     # TODO: something needs ffmpeg which is not built, like for yazi and vhs
     enable = false;
     package = inputs.nixpkgs-stable.legacyPackages.${system}.zed-editor;
-    extraPackages = with pkgs; [bash-language-server nil nixd];
+    extraPackages = with pkgs; [
+      bash-language-server
+      nil
+      nixd
+    ];
     userSettings = {
       cli_default_open_behavior = "new_window";
       project_panel.dock = "right";
@@ -25,7 +30,7 @@
       context_servers = {
         "mcp-server-github" = {
           enabled = false;
-          settings = {};
+          settings = { };
         };
         kagimcp = {
           enabled = false;
@@ -89,7 +94,7 @@
       ui_font_size = 14;
       buffer_font_size = 13;
       buffer_font_family = "MonaspiceNe Nerd Font";
-      buffer_font_features = lib.genAttrs ["calt" "ss01" "ss02" "liga"] (_: true);
+      buffer_font_features = lib.genAttrs [ "calt" "ss01" "ss02" "liga" ] (_: true);
       theme = "Zedokai Darker (Filter Spectrum)";
       terminal = {
         font_size = 12;
@@ -101,13 +106,16 @@
       edit_predictions = {
         provider = "copilot";
         mode = "eager";
-        copilot = lib.genAttrs ["proxy" "proxy_no_verify" "enterprise_uri"] (_: null);
+        copilot = lib.genAttrs [ "proxy" "proxy_no_verify" "enterprise_uri" ] (_: null);
         enabled_in_text_threads = false;
       };
       use_smartcase_search = true;
       inlay_hints.enabled = true;
       languages = {
-        Nix.language_servers = ["nixd" "nil"];
+        Nix.language_servers = [
+          "nixd"
+          "nil"
+        ];
         Solidity.tab_size = 2;
       };
       diagnostics.inline.enabled = true;
@@ -119,24 +127,19 @@
         "rust-analyzer" = {
           binary = {
             path = "/Users/brightone/.local/share/cargo/bin/rust-analyzer";
-            arguments = [];
+            arguments = [ ];
           };
           initialization_options.check.command = "clippy";
         };
-        nil.settings.formatting.command = ["nix" "fmt"];
-        nixd.settings.formatting.command = ["nix" "fmt"];
+        nil.settings.formatting.command = [
+          "nix"
+          "fmt"
+        ];
+        nixd.settings.formatting.command = [
+          "nix"
+          "fmt"
+        ];
       };
-      ssh_connections = [
-        {
-          host = "bazzite";
-          username = "brightone";
-          projects = [
-            {
-              paths = ["/home/brightone/code/syndicate-appchains"];
-            }
-          ];
-        }
-      ];
     };
   };
 }

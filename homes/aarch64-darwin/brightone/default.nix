@@ -9,7 +9,10 @@ let
   pkgs-stable = inputs.nixpkgs-stable.legacyPackages.${system};
 in
 {
-  imports = [ ./zed.nix ];
+  imports = [
+    ./vcs.nix
+    ./zed.nix
+  ];
 
   programs.nix-index-database.comma.enable = true;
 
@@ -37,21 +40,6 @@ in
         nix-search-tv
         nix-your-shell
         nurl
-      ]
-      # Version management, GitHub and security
-      ++ [
-        # debase # broken compilation
-        delta
-        difftastic
-        git
-        git-backdate
-        gitleaks
-        gh
-        jujutsu
-        jjui
-        lazyjj
-        lazygit
-        trufflehog
       ]
       ++ [
         act
