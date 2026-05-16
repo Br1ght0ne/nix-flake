@@ -10,6 +10,7 @@ let
 in
 {
   imports = [
+    ./nix.nix
     ./vcs.nix
     ./zed.nix
   ];
@@ -20,28 +21,7 @@ in
   home.packages =
     (
       with pkgs;
-      # Nix developer tools
       [
-        # Formatters
-        alejandra
-        nixfmt
-        nixfmt-tree
-        # Language servers
-        nil
-        nixd
-        # Helpers
-        dix
-        # snowfallorg.flake
-        nh
-        omnix
-        nixpkgs-hammering
-        nixpkgs-reviewFull
-        nix-init
-        nix-search-tv
-        nix-your-shell
-        nurl
-      ]
-      ++ [
         act
         age
         # aider-chat
