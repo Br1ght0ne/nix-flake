@@ -42,6 +42,8 @@
               | uniq
           )
       }
+
+      $env.PATH = $env.PATH | prepend $"($nu.home-dir)/.local/bin" | uniq
     '';
   };
 
