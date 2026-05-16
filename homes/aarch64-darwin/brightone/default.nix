@@ -1,13 +1,8 @@
 {
   lib,
-  inputs,
-  system,
   pkgs,
   ...
 }:
-let
-  pkgs-stable = inputs.nixpkgs-stable.legacyPackages.${system};
-in
 {
   imports = [
     ./editors.nix
