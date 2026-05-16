@@ -19,9 +19,9 @@
       "bookmark"
       "move"
       "--from"
-      "heads(::@- & bookmarks())"
+      "heads(::@ & bookmarks())"
       "--to"
-      "@-"
+      "heads(::@ ~ empty())"
     ];
   };
   programs.jjui.enable = true;
