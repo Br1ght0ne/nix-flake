@@ -6,6 +6,9 @@
   ...
 }:
 {
+  programs.helix.enable = true;
+  programs.neovim.enable = true;
+
   programs.zed-editor = {
     # TODO: something needs ffmpeg which is not built, like for yazi and vhs
     enable = false;

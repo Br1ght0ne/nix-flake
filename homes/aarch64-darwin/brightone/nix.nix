@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   programs.nh.enable = true;
+  programs.nix-index-database.comma.enable = true;
   programs.nix-init.enable = true;
   programs.nix-search-tv.enable = true;
   programs.nix-your-shell.enable = true;
