@@ -1,8 +1,49 @@
-{ ... }:
 {
   # Shells
   programs.zsh.enable = true;
-  programs.nushell.enable = true;
+  programs.nushell = {
+    enable = true;
+    settings = {
+      buffer_editor = "zed";
+      show_banner = false;
+    };
+    extraConfig = ''
+      # Nix shell integration — mirrors nix-daemon.sh.
+      # __ETC_PROFILE_NIX_SOURCED also prevents /etc/profile.d/nix-daemon.sh from
+      # re-running if a POSIX shell is spawned from this session.
+      if not ("__ETC_PROFILE_NIX_SOURCED" in $env) {
+          $env.__ETC_PROFILE_NIX_SOURCED = 1
+
+          let nix_profile = ($env.HOME | path join ".nix-profile")
+          let nix_default = "/nix/var/nix/profiles/default"
+
+          # Used by nix(1) for profile management
+          $env.NIX_PROFILES = $"($nix_default) ($nix_profile)"
+
+          # TLS verification for nix fetches and nix-built tools (curl, git, …)
+          if not ("NIX_SSL_CERT_FILE" in $env) {
+              let cert = [
+                  "/etc/ssl/certs/ca-certificates.crt"          # macOS (Nix-provided), NixOS, Ubuntu, Arch
+                  "/etc/ssl/ca-bundle.pem"                       # openSUSE
+                  "/etc/ssl/certs/ca-bundle.crt"                 # Old NixOS
+                  "/etc/pki/tls/certs/ca-bundle.crt"             # Fedora, CentOS
+                  $"($nix_profile)/etc/ssl/certs/ca-bundle.crt"  # fallback: cacert in profile
+                  $"($nix_default)/etc/ssl/certs/ca-bundle.crt"  # fallback: cacert in default
+              ] | where { |p| $p | path exists } | first
+
+              if $cert != null { $env.NIX_SSL_CERT_FILE = $cert }
+          }
+
+          # Per-user profile first, then system-wide default — matches nix-daemon.sh order
+          $env.PATH = (
+              $env.PATH
+              | prepend $"($nix_default)/bin"
+              | prepend $"($nix_profile)/bin"
+              | uniq
+          )
+      }
+    '';
+  };
 
   # Prompt
   programs.starship.enable = true;
@@ -10,6 +51,7 @@
   # Navigation
   programs.zoxide.enable = true;
   programs.fzf.enable = true;
+  programs.atuin.enable = true;
 
   # Completion
   programs.carapace.enable = true;
