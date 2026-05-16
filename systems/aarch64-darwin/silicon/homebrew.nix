@@ -91,6 +91,7 @@
       "signal"
       "tailscale-app"
       "telegram"
+      "thaw"
       "thunderbird"
       "tor-browser"
       "trex"
