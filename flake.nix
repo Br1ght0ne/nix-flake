@@ -14,6 +14,7 @@
     snowfall-flake = {
       url = "github:snowfallorg/flake";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.snowfall-lib.follows = "snowfall-lib";
     };
 
     darwin = {
@@ -30,6 +31,16 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    agent-sandbox = {
+      url = "github:archie-judd/agent-sandbox.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Provides up-to-date AI agent packages (claude-code, pi, …).
+    # Intentionally not following nixpkgs — llm-agents pins its own nixpkgs
+    # per agent to ensure builds work.
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
   outputs =

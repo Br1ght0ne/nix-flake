@@ -1,0 +1,17 @@
+{
+  "lastChangelogVersion": "0.75.4",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "claude-sonnet-4.6",
+  "defaultThinkingLevel": "high",
+  "enabledModels": [
+    "github-copilot/claude-opus-4.7",
+    "github-copilot/claude-sonnet-4.6",
+    "github-copilot/gpt-5-mini"
+  ],
+  "skills": [
+    "-skills/anthropic-skills/skills/algorithmic-art/SKILL.md",
+    "-skills/anthropic-skills/skills/brand-guidelines/SKILL.md",
+    "+skills/pi-skills/brave-search/SKILL.md",
+    "-skills/anthropic-skills/skills/canvas-design/SKILL.md"
+  ]
+}

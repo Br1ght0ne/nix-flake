@@ -5,6 +5,7 @@
 }:
 {
   imports = [
+    ./agents.nix
     ./editors.nix
     ./nix.nix
     ./shell.nix
@@ -135,6 +136,7 @@
       xdg-ninja
       xan # maintained fork of xsv
       # xsv
+      worktrunk
       # yaml-language-server
       # TODO: re-enable once ffmpeg builds on aarch64-darwin (malformed 64-bit version linker error)
       # yazi
