@@ -43,6 +43,39 @@
           )
       }
 
+      # Language-toolchain / user-installed bins.
+      # Each entry is guarded by path exists so this stays portable.
+      $env.PATH = (
+          $env.PATH
+          | prepend ([ "/run/current-system/sw/bin" ] | where { |p| $p | path exists })
+          | prepend ([ ($env.HOME | path join ".local" "share" "cargo" "bin") ] | where { |p| $p | path exists })
+          | prepend ([ ($env.HOME | path join ".foundry" "bin") ] | where { |p| $p | path exists })
+          | prepend ([ ($env.HOME | path join ".bun" "install" "global" "~" ".bun" "bin") ] | where { |p| $p | path exists })
+          | prepend ([ ($env.HOME | path join ".bun" "bin") ] | where { |p| $p | path exists })
+          | prepend ([ ($env.HOME | path join ".config" "emacs" "bin") ] | where { |p| $p | path exists })
+          | uniq
+      )
+
+      # Homebrew integration — mirrors `brew shellenv` for Nushell.
+      # /opt/homebrew = Apple Silicon; /usr/local = Intel.
+      let brew_prefix = (
+          [ "/opt/homebrew" "/usr/local" ]
+          | where { |p| $p | path exists }
+          | first
+          | default null
+      )
+      if $brew_prefix != null {
+          $env.HOMEBREW_PREFIX     = $brew_prefix
+          $env.HOMEBREW_CELLAR     = $"($brew_prefix)/Cellar"
+          $env.HOMEBREW_REPOSITORY = $brew_prefix
+          $env.PATH = (
+              $env.PATH
+              | prepend $"($brew_prefix)/sbin"
+              | prepend $"($brew_prefix)/bin"
+              | uniq
+          )
+      }
+
       $env.PATH = $env.PATH | prepend $"($nu.home-dir)/.local/bin" | uniq
     '';
   };
