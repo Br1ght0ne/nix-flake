@@ -121,7 +121,8 @@
   # Fuzzy finder TUI
   programs.television.enable = true;
 
-  # Python toolchain manager
+  # Toolchain managers
+  programs.mise.enable = true;
   programs.uv.enable = true;
 
   # Terminal multiplexer
