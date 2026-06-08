@@ -7,7 +7,7 @@
       options = {
         focus_follows_mouse = true;
         mouse_follows_focus = true;
-        horizontal_mouse_warp = 1;
+        horizontal_mouse_warp = -1;
       };
       decorations = {
         workspace_menu_status = false;
@@ -35,6 +35,8 @@
         window_fullwidth = "alt + shift - r";
         window_center = "alt - c";
         window_manage = "alt + shift - f";
+        window_stack = "alt - s";
+        window_unstack = "alt + shift - s";
 
         quit = "ctrl + alt - q";
       };
