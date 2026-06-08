@@ -1,0 +1,2 @@
+switch:
+    nh darwin switch .
