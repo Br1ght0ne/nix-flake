@@ -41,6 +41,11 @@
     # Intentionally not following nixpkgs — llm-agents pins its own nixpkgs
     # per agent to ensure builds work.
     llm-agents.url = "github:numtide/llm-agents.nix";
+
+    paneru = {
+      url = "github:karinushka/paneru";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
