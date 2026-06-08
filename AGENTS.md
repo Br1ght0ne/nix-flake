@@ -10,32 +10,22 @@ Personal macOS (aarch64-darwin) Nix configuration built on
 ## Repo structure
 
 ```
-flake.nix                          # Flake inputs & Snowfall Lib wiring
-flake.lock                         # Pinned input revisions (generated)
+flake.nix
+flake.lock                         # pinned input revisions (generated)
 
 homes/
   aarch64-darwin/
-    brightone/
-      default.nix                  # Home-manager root; home.packages list
-      editors.nix                  # Helix, Neovim, Zed
-      nix.nix                      # nh, nix-index, formatters, LSPs, helpers
-      shell.nix                    # Shells (zsh, nushell), CLI tools via programs.*
-      vcs.nix                      # git, jj, gh, lazygit, diff tools
+    brightone/                     # home-manager configuration
+      agents/                      # agent config files (AGENTS.md, pi settings, extensions)
 
 systems/
   aarch64-darwin/
-    silicon/
-      default.nix                  # Top-level system imports
-      aerospace.nix                # AeroSpace tiling WM config
-      homebrew.nix                 # nix-darwin Homebrew integration (brews, casks, masApps)
-      system.nix                   # macOS system defaults, keyboard remapping
+    silicon/                       # nix-darwin system configuration
 
 modules/
-  darwin/
-    keyboard/
-      default.nix                  # Custom nix-darwin module: nonUS comparison-sign remap
+  darwin/                          # custom nix-darwin modules
 
-logs/                              # Freeform change-log notes (not Nix, not built)
+logs/                              # freeform change-log notes (not Nix, not built)
 ```
 
 Snowfall Lib auto-discovers systems and homes by directory path, so
@@ -160,9 +150,13 @@ typos --write-changes   # auto-fix
 |---|---|
 | `nixpkgs` | `nixpkgs-unstable` — primary package set |
 | `snowfall-lib` | Automatic system/home/module discovery |
+| `snowfall-flake` | `flake` overlay (Snowfall tooling) |
 | `darwin` | nix-darwin macOS system management |
 | `home-manager` | User environment management |
 | `nix-index-database` | Pre-built `nix-index` DB + `comma` |
+| `agent-sandbox` | macOS sandbox wrappers for AI agents |
+| `llm-agents` | Up-to-date agent packages (claude-code, pi); intentionally does not follow `nixpkgs` |
+| `paneru` | Window-management service (used in `wm.nix`) |
 
 All inputs follow `nixpkgs` (`inputs.X.follows = "nixpkgs"`) to avoid
 duplicate nixpkgs instances in the closure.
