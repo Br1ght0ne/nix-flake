@@ -84,8 +84,6 @@ let
     nurl           # generate fetch expressions
     statix         # linter
     deadnix        # find unused bindings
-    dix            # semantic nix diff
-    omnix          # om CLI for flake health checks
     nixpkgs-hammering
   ];
 

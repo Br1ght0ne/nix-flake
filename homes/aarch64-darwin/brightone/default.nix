@@ -98,7 +98,6 @@
       ouch
       # parallel
       pipenv
-      pipx
       pqrs
       presenterm
       q

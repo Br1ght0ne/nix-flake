@@ -3,21 +3,13 @@
     enable = true;
     onActivation = {
       autoUpdate = false;
-      cleanup = "check";
       upgrade = false;
     };
     # global.autoUpdate = true;
     taps = [
-      "anomalyco/tap"
       "br1ght0ne/cdda"
-      "eugene1g/safehouse"
     ];
-    brews = [
-      "eugene1g/safehouse/agent-safehouse"
-      "ansible"
-      "opencode"
-      "paneru"
-    ];
+    brews = [ ];
     caskArgs.require_sha = true;
     casks = [
       "1password"
@@ -39,6 +31,7 @@
       "cataclysm-tlg"
       "claude"
       "codexbar"
+      "darktable"
       "db-browser-for-sqlite"
       "deepl"
       "dosbox"
@@ -109,6 +102,7 @@
       "Actions" = 1586435171;
       "Bitwarden" = 1352778147;
       "Camera Preview" = 1632827132;
+      "Dato" = 1470584107;
       "Developer" = 640199958;
       "DigiDoc4" = 1370791134;
       "Enchanted" = 6474268307;
@@ -116,9 +110,10 @@
       "Gemini 2" = 1090488118;
       "Keymapp" = 6472865291;
       "Keynote" = 409183694;
+      "LanguageTool" = 1534275760;
       "Negative" = 1378123825;
       "Numbers" = 409203825;
-      "Pages" = 409201541;
+      "Orb" = 6477840170;
       "Plash" = 1494023538;
       "Raycast Companion" = 6738274497;
       "The Unarchiver" = 425424353;

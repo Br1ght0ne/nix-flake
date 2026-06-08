@@ -17,10 +17,7 @@
     # Language servers
     nil
     nixd
-    # Helpers
-    dix
     # snowfallorg.flake
-    omnix
     nixpkgs-hammering
     nixpkgs-reviewFull
     nurl

@@ -178,7 +178,5 @@ statix check                  # lint .nix files in cwd
 statix check path/to/file.nix
 deadnix                       # find unused bindings
 deadnix --edit                # remove them in-place
-dix old.nix new.nix           # semantic diff (shows attribute changes)
-om health                     # omnix flake health checks
 nixpkgs-hammering -E '<nixpkgs>' pkgAttr   # lint a nixpkgs package
 ```
