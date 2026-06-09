@@ -9,9 +9,9 @@
         mouse_follows_focus = true;
         horizontal_mouse_warp = -1;
       };
-      swipe.gesture.vertical = false;
+      swipe.gesture.vertical = true;
       decorations = {
-        workspace_menu_status = false;
+        workspace_menu_status = true;
         workspace_popup_status = true;
       };
       bindings = {
