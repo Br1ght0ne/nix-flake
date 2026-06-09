@@ -9,6 +9,7 @@
         mouse_follows_focus = true;
         horizontal_mouse_warp = -1;
       };
+      swipe.gesture.vertical = false;
       decorations = {
         workspace_menu_status = false;
         workspace_popup_status = true;
