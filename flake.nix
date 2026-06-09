@@ -46,6 +46,17 @@
       url = "github:karinushka/paneru";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    my-packages = {
+      url = "github:Br1ght0ne/nix-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.snowfall-lib.follows = "snowfall-lib";
+    };
+
+    concord = {
+      url = "github:chojs23/concord";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
