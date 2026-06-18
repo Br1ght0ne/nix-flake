@@ -29,6 +29,20 @@
         window_swap_north = "alt + shift - k";
         window_swap_south = "alt + shift - j";
 
+        window_virtual_north = "cmd + shift - k";
+        window_virtual_south = "cmd + shift - j";
+        window_virtualmove_north = "cmd + alt - k";
+        window_virtualmove_south = "cmd + alt - j";
+        window_virtualnum_1 = "cmd + alt - 1";
+        window_virtualnum_2 = "cmd + alt - 2";
+        window_virtualnum_3 = "cmd + alt - 3";
+        window_virtualmovenum_1 = "cmd + alt + ctrl - 1";
+        window_virtualmovenum_2 = "cmd + alt + ctrl - 2";
+        window_virtualmovenum_3 = "cmd + alt + ctrl - 3";
+        window_virtualsendnum_1 = "cmd + alt + shift - 1";
+        window_virtualsendnum_2 = "cmd + alt + shift - 2";
+        window_virtualsendnum_3 = "cmd + alt + shift - 3";
+
         window_nextdisplay = "alt - m";
         window_nextdisplaysend = "alt + shift - m";
 
