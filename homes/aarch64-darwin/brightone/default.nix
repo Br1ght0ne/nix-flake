@@ -1,5 +1,7 @@
 {
   lib,
+  inputs,
+  system,
   pkgs,
   ...
 }:
@@ -7,8 +9,10 @@
   imports = [
     ./agents.nix
     ./editors.nix
+    ./games.nix
     ./nix.nix
     ./shell.nix
+    ./sync.nix
     ./vcs.nix
   ];
 
@@ -147,5 +151,6 @@
       pinentry_mac
       zld
     ]
+    ++ [ inputs.concord.packages.${system}.concord ]
   );
 }
