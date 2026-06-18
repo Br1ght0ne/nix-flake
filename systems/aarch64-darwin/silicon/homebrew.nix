@@ -6,40 +6,15 @@
       upgrade = false;
     };
     # global.autoUpdate = true;
-    taps = [
-      "br1ght0ne/cdda"
-    ];
     brews = [ ];
     caskArgs.require_sha = true;
     casks = [
-      "1password"
-      "1password-cli"
       "alt-tab"
-      "android-studio"
       "anki"
-      "audacity"
-      "balenaetcher"
-      "beekeeper-studio"
-      "betterdisplay"
-      "bettertouchtool"
-      "blackhole-16ch"
-      "bruno"
       "calibre"
-      "cataclysm"
-      "cataclysm-rc"
-      "cataclysm-bn-nightly"
-      "cataclysm-tlg"
-      "claude"
       "codexbar"
-      "darktable"
-      "db-browser-for-sqlite"
-      "deepl"
-      "dosbox"
-      "dotnet-sdk"
-      "dungeon-crawl-stone-soup-tiles"
-      "element"
+      "discord"
       "emacs-app"
-      "flox"
       "flux-app"
       "font-cozette"
       "font-dejavu"
@@ -48,53 +23,29 @@
       "font-monaspace"
       "font-monaspice-nerd-font"
       "font-monocraft"
-      "ghostty"
-      "gimp"
       "google-chrome"
       "heroic"
       "ilspy"
       "imhex"
-      "inkscape"
       "latest"
-      "ledger-wallet"
       "losslesscut"
       "lunar"
-      "maccy"
-      "macfuse"
-      "miniconda"
-      "mitmproxy"
-      "mono-mdk"
       "moonlight"
-      "mounty"
-      "musicbrainz-picard"
       "neat"
       "obsidian"
       "ollama-app"
-      "orbstack"
-      "orion"
       "parsec"
       "postgres-app"
-      "postico"
-      "powershell"
       "protonvpn"
       "raycast"
-      "rider"
       "shattered-pixel-dungeon"
       "shortcat"
-      "signal"
       "tailscale-app"
       "telegram"
       "thaw"
       "thunderbird"
-      "tor-browser"
       "trex"
-      "trezor-suite"
-      "ultimaker-cura"
-      "warp"
-      "wezterm"
       "whatsapp"
-      "xonotic"
-      "yaak"
       "zed"
       "zen"
     ];
@@ -105,21 +56,17 @@
       "Dato" = 1470584107;
       "Developer" = 640199958;
       "DigiDoc4" = 1370791134;
-      "Enchanted" = 6474268307;
       "Fantastical" = 975937182;
       "Gemini 2" = 1090488118;
       "Keymapp" = 6472865291;
-      "Keynote" = 409183694;
       "LanguageTool" = 1534275760;
       "Negative" = 1378123825;
-      "Numbers" = 409203825;
       "Orb" = 6477840170;
       "Plash" = 1494023538;
       "Raycast Companion" = 6738274497;
       "The Unarchiver" = 425424353;
       "Velja" = 1607635845;
       "WhatsApp" = 310633997;
-      "Xcode" = 497799835;
     };
   };
 }
