@@ -22,8 +22,8 @@ let
     fd
     ripgrep
     tree
-    file           # identify file types
-    hexyl          # hex viewer for binary inspection
+    file # identify file types
+    hexyl # hex viewer for binary inspection
 
     # Archives
     gzip
@@ -62,7 +62,7 @@ let
     rustc
 
     # C / C++ / build system
-    stdenv.cc      # clang wrapper with ar, ld, …
+    stdenv.cc # clang wrapper with ar, ld, …
     gnumake
     cmake
     ninja
@@ -81,9 +81,9 @@ let
 
     # Nix
     nixfmt
-    nurl           # generate fetch expressions
-    statix         # linter
-    deadnix        # find unused bindings
+    nurl # generate fetch expressions
+    statix # linter
+    deadnix # find unused bindings
     nixpkgs-hammering
   ];
 
@@ -99,8 +99,8 @@ let
     binName = "claude";
     outName = "claude";
     allowedPackages = commonPackages;
-    stateDirs = commonStateDirs ++ [ "$HOME/.claude" ];
-    extraEnv = {
+    rwDirs = commonStateDirs ++ [ "$HOME/.claude" ];
+    env = {
       # Pass as a shell-variable reference so the value is never baked into
       # the Nix store; export it in the host shell before invoking the agent.
       CLAUDE_CODE_OAUTH_TOKEN = "$CLAUDE_CODE_OAUTH_TOKEN";
@@ -119,8 +119,8 @@ let
     binName = "pi";
     outName = "pi";
     allowedPackages = commonPackages;
-    stateDirs = commonStateDirs ++ [ "$HOME/.pi" ];
-    extraEnv = { };
+    rwDirs = commonStateDirs ++ [ "$HOME/.pi" ];
+    env = { };
   };
 
   pi-unboxed = pkgs.writeShellScriptBin "pi-unboxed" ''
@@ -147,9 +147,8 @@ in
       force = true;
     };
 
-    # Sandbox indicator extension — shows ⬡ sandboxed / ⬡ unboxed in the footer.
-    ".pi/agent/extensions/sandbox-indicator.ts" = {
-      source = ./agents/pi/extensions/sandbox-indicator.ts;
+    ".pi/agent/extensions" = {
+      source = ./agents/pi/extensions;
       force = true;
     };
 
@@ -157,6 +156,10 @@ in
     # Read-only symlink — change settings here in the flake rather than via the TUI.
     ".pi/agent/settings.json" = {
       source = ./agents/pi/settings.json;
+      force = true;
+    };
+    ".claude/settings.json" = {
+      source = ./agents/claude/settings.json;
       force = true;
     };
   };

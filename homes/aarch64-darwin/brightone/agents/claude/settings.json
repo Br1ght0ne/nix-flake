@@ -1,0 +1,6 @@
+{
+  "skipWorkflowUsageWarning": true,
+  "theme": "auto",
+  "skipDangerousModePermissionPrompt": true,
+  "defaultMode": "bypassPermissions"
+}
