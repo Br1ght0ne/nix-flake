@@ -55,6 +55,12 @@
 
         quit = "ctrl + alt - q";
       };
+      windows = {
+        peek-pop = {
+          title = "\[Peek Pop\].*";
+          floating = true;
+        };
+      };
     };
   };
 }
