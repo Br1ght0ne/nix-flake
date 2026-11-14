@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.system.keyboard;
-in {
+in
+{
   options.system.keyboard = {
     nonUS.remapComparisonSigns = lib.mkOption {
       type = lib.types.bool;
