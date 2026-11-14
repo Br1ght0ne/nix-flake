@@ -80,6 +80,7 @@
         (pkgsFor "aarch64-darwin").callPackage ./packages/cataclysm/cataclysm-dda-git-bin
           { };
       packages.aarch64-darwin.gather-v2 = (pkgsFor "aarch64-darwin").callPackage ./packages/gather-v2 { };
+      packages.aarch64-darwin.orca = (pkgsFor "aarch64-darwin").callPackage ./packages/orca { };
       checks.aarch64-darwin.configuration =
         let
           result = import ./tests/configuration.nix inputs.self;

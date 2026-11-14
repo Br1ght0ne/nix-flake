@@ -140,6 +140,7 @@
 
         # orchestration
         pkgs.herdr
+        (pkgs.callPackage ../../packages/orca { })
       ];
 
       home.file = {
