@@ -1,5 +1,10 @@
 {
-  den.aspects.essential-apps.homeManager = { pkgs, ... }: { home.packages = [ pkgs.emacs ]; };
+  den.aspects.essential-apps.homeManager = { pkgs, ... }: {
+    home.packages = [
+      pkgs.emacs
+      (pkgs.callPackage ../../packages/thaw { })
+    ];
+  };
   den.aspects.essential-apps.darwin = { lib, ... }: {
     # GUI-launched Nushell loads system.build.setEnvironment, not path_helper.
     # Keep Nix-managed tools ahead of equivalent Homebrew installations.

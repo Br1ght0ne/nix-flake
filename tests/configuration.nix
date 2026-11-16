@@ -35,6 +35,7 @@ let
     assert lib.all (has (packages c)) [
       "codex"
       "emacs"
+      "thaw"
     ];
     assert !(has (packages c) "rustup");
     assert lib.all (has (casks c)) [

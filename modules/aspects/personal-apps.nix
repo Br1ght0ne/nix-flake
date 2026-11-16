@@ -28,7 +28,6 @@
         "protonvpn"
         "shortcat"
         "tailscale-app"
-        "thaw"
         "thunderbird"
         "trex"
         "whatsapp"
