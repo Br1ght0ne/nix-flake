@@ -1,6 +1,8 @@
 # Sandbox environment
 
-This agent runs inside an `agent-sandbox.nix` macOS sandbox (`sandbox-exec`).
+For Claude/Pi launched through `agent-sandbox.nix`, the following sandbox
+instructions apply. Codex runs without this outer wrapper and uses its own
+permissions and sandbox settings.
 `$HOME` is an ephemeral tmpfs; the real home is reachable only through the paths
 below.
 
@@ -180,3 +182,74 @@ deadnix                       # find unused bindings
 deadnix --edit                # remove them in-place
 nixpkgs-hammering -E '<nixpkgs>' pkgAttr   # lint a nixpkgs package
 ```
+
+
+# Nixpkgs contribution process
+
+When working in a Nixpkgs checkout, including
+`~/dev/github.com/NixOS/nixpkgs`, resolve the following paths relative to that
+checkout. Read its `CONTRIBUTING.md` and applicable subsystem guidance before
+editing; the current repository policy takes precedence over this summary.
+
+1. Inspect the working tree and preserve unrelated changes. Keep updates focused.
+   Verify the upstream repository, latest requested release, download URL and
+   source hash against upstream evidence.
+2. Follow repository conventions. Run appropriate formatting, evaluation and
+   build checks; for a package update, build the affected attribute when possible
+   (for example, `nix-build -A thaw --no-out-link`). Report the platform, commands,
+   results and limitations. Building does not establish runtime correctness.
+3. Prepare a reviewable diff and a conventional commit message, such as
+   `thaw: 1.2.0 -> 2.1.0`, including the required AI disclosure. Use the repository
+   PR template and include testing evidence and a separate PR disclosure. Only
+   mark checklist items that have actually been verified.
+4. Ensure a responsible human reviews and understands the contribution before
+   submission. Obtain user authorization before publishing, pushing or posting
+   public messages. Verify fixes made in response to review feedback and disclose
+   generated follow-up text separately.
+
+## Usage and accountability
+
+- Keep a responsible human in the loop. Prepare changes and validation evidence
+  for human review before submission. Never claim that human review occurred
+  unless it actually did.
+- The submitting contributor must understand the contribution, reasonably expect
+  it to be correct, and ensure appropriate licensing and credit. AI output needs
+  manual review or suitable automated verification; unreviewed autonomous
+  contributions and automated-only merge decisions are not permitted.
+- Review and disclose verification automation in line with the policy. Report
+  commands run, results, and limitations accurately; distinguish building a package
+  from testing the application at runtime.
+- Apply these requirements to follow-up discussion as well. The contributor must
+  be able to answer questions and address feedback without merely relaying AI
+  messages.
+
+## Disclosure
+
+- Disclose non-trivial generated output, including edited output, in code,
+  documentation, commit messages, PR summaries, issues, reviews, and public
+  development discussions.
+- For LLM-assisted commits, include an `Assisted-by:` trailer identifying the tool
+  and primary model name and version actually used. For example, replace the
+  placeholders in `Assisted-by: Codex (<model name and version>)` with verified
+  session details. Never invent model information; obtain it before submission
+  if unavailable. A `Co-authored-by:` trailer does not satisfy this requirement.
+- Disclose assistance separately in PR summaries and review comments; a commit
+  trailer alone does not cover them. State the tool/model and the scope of its
+  assistance, including relevant verification tooling.
+- When preparing a contribution for the user to submit, include the required
+  disclosure in the prepared commit message or public text. Do not submit public
+  communication without authorization.
+
+## Exemptions and drafts
+
+Follow the policy’s exact exemptions. Reviewed deterministic editor/formatter
+changes, short rote completions, and approved community automation may be exempt.
+AI research, testing, debugging, or private review is outside disclosure scope
+when no substantial output is included, but significant technical influence should
+still be disclosed where relevant. Do not assume an entire contribution is exempt
+because one step used an exempt tool.
+
+Draft PRs still require some review and disclosure; complete review is required
+before marking them ready. Translation retains responsibility, confidence, and
+disclosure requirements. AI use in packaged upstream software is outside this
+policy’s scope.

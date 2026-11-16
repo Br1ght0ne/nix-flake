@@ -9,7 +9,7 @@ Personal and work macOS configuration using Den, nix-darwin and Home Manager.
 - `modules/aspects/`: named Den aspects, containing `darwin`, `homeManager`, or both.
 - `modules/aspects/brightone.nix`: minimal shared user/home identity.
 - `modules/_darwin/keyboard.nix`: ordinary Darwin module, imported by the system aspect.
-- `modules/_assets/agents/`: shared Claude/Pi instructions, settings and extensions.
+- `modules/_assets/agents/`: shared Codex/Claude/Pi instructions, settings and extensions.
 - `modules/default.nix`: explicit aspect imports. Add new aspect files here.
 - `tests/configuration.nix`: evaluated host selection assertions.
 - `logs/`: freeform notes; not built.
@@ -62,7 +62,8 @@ belongs under `darwin`. A feature may use both classes in the same file.
   Linear and Gather V2 from Nix; Homebrew Herdr, ChatGPT and Slack. Zed/Telegram come from essentials.
 - `terminal`: Ghostty from Nix, including its settings.
 - `ai-agents`: sandboxed Claude/Pi plus unboxed commands and plain Codex CLI.
-  Codex sandboxing is a TODO. Existing local Codex settings are not managed.
+  Codex sandboxing is a TODO. Global Codex instructions use the shared
+  `modules/_assets/agents/AGENTS.md`; other local Codex settings are not managed.
 - `personal-dev`: the remaining broad personal package collection.
 - `gaming`, `personal-apps`, `window-management`: silicon-only additions.
 
@@ -71,6 +72,10 @@ installed packages are not removed. Existing Homebrew Ghostty/Codex installation
 are not automatically uninstalled. Casks require checksums.
 
 ## Validation and formatting
+
+After editing Nix files, format them with the flake's pinned formatter via
+`nix fmt`. Do not use an arbitrary `nixfmt` from PATH or a hard-coded Nix store
+path, since its version may differ from the repository's formatter.
 
 ```sh
 nix fmt

@@ -144,8 +144,10 @@
       ];
 
       home.file = {
-        # Sandbox instructions — shared by pi and Claude Code.
-        # Describes accessible paths, tools on PATH, and usage examples.
+        # Shared instructions for Codex, Pi and Claude Code.
+        ".codex/AGENTS.md" = {
+          source = ../_assets/agents/AGENTS.md;
+        };
         ".pi/agent/AGENTS.md" = {
           source = ../_assets/agents/AGENTS.md;
           force = true;
