@@ -7,6 +7,7 @@
         nodejs
         bun
         linear
+        orbstack
         (pkgs.callPackage ../../packages/gather-v2 { })
       ];
       programs.ripgrep.enable = true;

@@ -55,11 +55,13 @@ host. `programs.nh.flake` points to the live checkout at
 Add packages/settings to the appropriate aspect, then include the aspect on the
 hosts that need it. Home Manager packages belong under `homeManager`; Homebrew
 belongs under `darwin`. A feature may use both classes in the same file.
+Default to nixpkgs when adding software. Use Homebrew only when explicitly
+requested or when a suitable nixpkgs package is unavailable.
 
 - `essential-apps`: Emacs from Nix; Raycast, Telegram and Zed from Homebrew.
   These started from the intersection of iridium's installed casks and the old configuration.
 - `work-dev`: nixpkgs Rust/Cargo, Node, Bun, ripgrep, fd, GNU grep and mise;
-  Linear and Gather V2 from Nix; Homebrew Herdr, ChatGPT and Slack. Zed/Telegram come from essentials.
+  Linear, OrbStack and Gather V2 from Nix; Homebrew Herdr, ChatGPT and Slack. Zed/Telegram come from essentials.
 - `terminal`: Ghostty from Nix, including its settings.
 - `ai-agents`: sandboxed Claude/Pi plus unboxed commands and plain Codex CLI.
   Codex sandboxing is a TODO. Global Codex instructions use the shared
