@@ -1,8 +1,10 @@
 # Sandbox environment
 
-For Claude/Pi launched through `agent-sandbox.nix`, the following sandbox
-instructions apply. Codex runs without this outer wrapper and uses its own
-permissions and sandbox settings.
+For `claude`, `pi`, and `codex-boxed` launched through `agent-sandbox.nix`, the
+following sandbox instructions apply. `codex-boxed` disables its inner sandbox and
+approval prompts; the outer sandbox enforces access. The `*-unboxed` commands and
+plain `codex` skip the outer sandbox. Plain `codex` keeps Codex's normal permission
+and sandbox settings for IDE compatibility while the outer sandbox is unfinished.
 `$HOME` is an ephemeral tmpfs; the real home is reachable only through the paths
 below.
 
@@ -15,6 +17,7 @@ below.
 | `~/dev` | read-write | |
 | `~/.claude` | read-write | claude only |
 | `~/.pi` | read-write | pi only |
+| `~/.codex` | read-write | codex only |
 
 ## Tools on PATH
 

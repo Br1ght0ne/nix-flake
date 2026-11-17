@@ -24,7 +24,12 @@ let
       "pi"
       "claude-unboxed"
       "pi-unboxed"
+      "codex-boxed"
     ];
+    assert
+      (lib.findFirst (p: (p.pname or p.name) == "codex-boxed") null (home c).home.packages) ? buildSpec;
+    assert
+      !((lib.findFirst (p: (p.pname or p.name) == "codex") null (home c).home.packages) ? buildSpec);
     assert lib.all (x: !(has (casks c) x)) [
       "ghostty"
       "emacs-app"

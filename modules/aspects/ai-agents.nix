@@ -128,11 +128,30 @@
       pi-unboxed = pkgs.writeShellScriptBin "pi-unboxed" ''
         exec ${llm.pi}/bin/pi "$@"
       '';
+
+      codex-boxed = sandbox.mkSandbox {
+        # Disable Codex's inner sandbox only after entering the outer sandbox.
+        # Keep its server in this process tree rather than reusing a host daemon.
+        pkg = pkgs.writeShellScriptBin "codex" ''
+          exec ${llm.codex}/bin/codex --no-daemon --dangerously-bypass-approvals-and-sandbox "$@"
+        '';
+        binName = "codex";
+        outName = "codex-boxed";
+        allowedPackages = commonPackages;
+        rwDirs = commonStateDirs ++ [ "$HOME/.codex" ];
+        env = {
+          CODEX_HOME = "$HOME/.codex";
+          OPENAI_API_KEY = "\${OPENAI_API_KEY:-}";
+        };
+      };
+
     in
     {
       home.packages = [
-        # TODO: explore sandboxing Codex; run it without an outer wrapper for now.
+        # Keep Codex's default command unboxed for IDE integrations while the
+        # outer sandbox still has hook and terminal compatibility issues.
         llm.codex
+        codex-boxed
         claude
         claude-unboxed
         pi

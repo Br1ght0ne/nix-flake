@@ -63,8 +63,10 @@ requested or when a suitable nixpkgs package is unavailable.
 - `work-dev`: nixpkgs Rust/Cargo, Node, Bun, ripgrep, fd, GNU grep and mise;
   Linear, OrbStack and Gather V2 from Nix; Homebrew Herdr, ChatGPT and Slack. Zed/Telegram come from essentials.
 - `terminal`: Ghostty from Nix, including its settings.
-- `ai-agents`: sandboxed Claude/Pi plus unboxed commands and plain Codex CLI.
-  Codex sandboxing is a TODO. Global Codex instructions use the shared
+- `ai-agents`: sandboxed Claude/Pi plus unboxed commands; plain `codex` retains
+  Codex's normal defaults for IDE compatibility. Opt-in `codex-boxed` uses
+  `--no-daemon --dangerously-bypass-approvals-and-sandbox` inside the outer sandbox;
+  its hook and terminal compatibility is unfinished. Global Codex instructions use the shared
   `modules/_assets/agents/AGENTS.md`; other local Codex settings are not managed.
 - `personal-dev`: the remaining broad personal package collection.
 - `gaming`, `personal-apps`, `window-management`: silicon-only additions.
