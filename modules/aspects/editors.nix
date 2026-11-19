@@ -8,6 +8,13 @@
     {
       home.packages = [ pkgs.nerd-fonts.monaspace ];
 
+      # Capture user configuration only; Doom's checkout and package state stay writable.
+      xdg.configFile = {
+        "doom/config.el".source = ../_assets/doom/config.el;
+        "doom/init.el".source = ../_assets/doom/init.el;
+        "doom/packages.el".source = ../_assets/doom/packages.el;
+      };
+
       programs.helix.enable = true;
       programs.neovim.enable = true;
 
