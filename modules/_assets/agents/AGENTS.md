@@ -15,6 +15,7 @@ below.
 | `$CWD` | read-write | the directory you were launched from |
 | git repo root (auto-detected) | read-only | may differ from `$CWD` in worktrees |
 | `~/dev` | read-write | |
+| `~/.agents` | read-write | shared by all agents |
 | `~/.claude` | read-write | claude only |
 | `~/.pi` | read-write | pi only |
 | `~/.codex` | read-write | codex only |

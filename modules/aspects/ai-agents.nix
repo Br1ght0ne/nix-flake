@@ -94,6 +94,7 @@
       # stateDirs; the full subtree is mounted read-write.
       commonStateDirs = [
         "$HOME/dev"
+        "$HOME/.agents"
       ];
 
       claude = sandbox.mkSandbox {
