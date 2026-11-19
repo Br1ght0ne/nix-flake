@@ -10,6 +10,40 @@
       sandbox = inputs.agent-sandbox.lib.${pkgs.stdenv.hostPlatform.system};
       llm = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
 
+      # Explicit preference allowlist: never import LM Studio's live JSON into
+      # the store, since it also contains tokens and application-owned state.
+      lmStudioSettings = {
+        language = "en";
+        developerMode = false;
+        enableLocalService = false;
+        autoLoadBundledLLM = true;
+        userInterfaceComplexityLevel = 0;
+        sidebar = {
+          showButtonNames = false;
+          monochromeSidebarIcons = true;
+        };
+        ui = {
+          missionControlFullscreen = false;
+          showModelFileNameInMyModels = false;
+          configureLoadParamsBeforeLoad = false;
+          alwaysOpenModelLoaderFromPicker = false;
+          contextDisplayMode = "percentage";
+          appNavigationBarPosition = "left";
+          showTabStripScrollBar = false;
+          tabStripFullStripStyle = false;
+          openDownloadsPaneOnStartNewModelDownload = false;
+        };
+        modelLoadingGuardrails = {
+          mode = "high";
+          customThresholdBytes = 4294967296;
+          alwaysAllowLoadAnyway = false;
+        };
+        defaultContextLength = {
+          type = "custom";
+          value = 8192;
+        };
+      };
+
       # Tools available on PATH inside every sandbox.
       # bash and cacert are always implicit (added by agent-sandbox.nix itself).
       commonPackages = with pkgs; [
@@ -164,6 +198,20 @@
         pkgs.lmstudio
         (pkgs.callPackage ../../packages/orca { })
       ];
+
+      # LM Studio needs a writable file. Merge only declared preferences using
+      # Home Manager's atomic writer, preserving credentials and runtime state.
+      home.activation.lmStudioSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] (
+        lib.hm.generators.mkImpureConfigMerger {
+          inherit pkgs;
+          format = "json";
+          empty = "{}";
+          path = "${config.home.homeDirectory}/.lmstudio/settings.json";
+          staticSettings = (pkgs.formats.json { }).generate "lm-studio-preferences.json" lmStudioSettings;
+          jqOperation = "$dynamic * $static";
+          mode = "600";
+        }
+      );
 
       # Native modules own settings and shared instructions; retain our sandbox
       # packages rather than installing a second, unboxed command.
