@@ -1,6 +1,11 @@
 { inputs, ... }: {
   den.aspects.ai-agents.homeManager =
-    { pkgs, ... }:
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
     let
       sandbox = inputs.agent-sandbox.lib.${pkgs.stdenv.hostPlatform.system};
       llm = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
@@ -151,11 +156,8 @@
       home.packages = [
         # Keep Codex's default command unboxed for IDE integrations while the
         # outer sandbox still has hook and terminal compatibility issues.
-        llm.codex
         codex-boxed
-        claude
         claude-unboxed
-        pi
         pi-unboxed
 
         # orchestration
@@ -163,35 +165,75 @@
         (pkgs.callPackage ../../packages/orca { })
       ];
 
-      home.file = {
-        # Shared instructions for Codex, Pi and Claude Code.
-        ".codex/AGENTS.md" = {
-          source = ../_assets/agents/AGENTS.md;
+      # Native modules own settings and shared instructions; retain our sandbox
+      # packages rather than installing a second, unboxed command.
+      programs.codex = {
+        enable = true;
+        package = llm.codex;
+        context = ../_assets/agents/AGENTS.md;
+        # Merge preferences while preserving app-managed integration paths,
+        # authentication, project trust and plugin state.
+        mutableSettings = true;
+        settings = {
+          model = "gpt-6.2-sol";
+          model_reasoning_effort = "medium";
+          service_tier = "default";
+          tui.terminal_title = [ "thread-title" ];
+          features = {
+            hooks = true;
+            memories = false;
+            chronicle = false;
+          };
+          memories = {
+            generate_memories = false;
+            use_memories = false;
+          };
         };
-        ".pi/agent/AGENTS.md" = {
-          source = ../_assets/agents/AGENTS.md;
-          force = true;
+      };
+      programs.claude-code = {
+        enable = true;
+        package = claude;
+        context = ../_assets/agents/AGENTS.md;
+        settings = {
+          skipWorkflowUsageWarning = true;
+          theme = "auto";
+          skipDangerousModePermissionPrompt = true;
+          defaultMode = "bypassPermissions";
         };
-        ".claude/CLAUDE.md" = {
-          source = ../_assets/agents/AGENTS.md;
-          force = true;
+      };
+      programs.pi-coding-agent = {
+        enable = true;
+        package = pi;
+        context = ../_assets/agents/AGENTS.md;
+        settings = {
+          lastChangelogVersion = "0.75.4";
+          defaultProvider = "github-copilot";
+          defaultModel = "claude-sonnet-4.6";
+          defaultThinkingLevel = "high";
+          enabledModels = [
+            "github-copilot/claude-opus-4.7"
+            "github-copilot/claude-sonnet-4.6"
+            "github-copilot/gpt-5-mini"
+          ];
+          skills = [
+            "-skills/anthropic-skills/skills/algorithmic-art/SKILL.md"
+            "-skills/anthropic-skills/skills/brand-guidelines/SKILL.md"
+            "+skills/pi-skills/brave-search/SKILL.md"
+            "-skills/anthropic-skills/skills/canvas-design/SKILL.md"
+          ];
         };
+      };
 
+      home.file = {
         ".pi/agent/extensions" = {
           source = ../_assets/agents/pi/extensions;
           force = true;
         };
-
-        # Pi settings: defaultProvider, defaultModel, enabledModels, skill overrides.
-        # Read-only symlink — change settings here in the flake rather than via the TUI.
-        ".pi/agent/settings.json" = {
-          source = ../_assets/agents/pi/settings.json;
-          force = true;
-        };
-        ".claude/settings.json" = {
-          source = ../_assets/agents/claude/settings.json;
-          force = true;
-        };
+        # Preserve the existing force policy when native modules take ownership.
+        "${config.home.homeDirectory}/.pi/agent/AGENTS.md".force = true;
+        "${config.home.homeDirectory}/.pi/agent/settings.json".force = true;
+        "${config.home.homeDirectory}/.claude/CLAUDE.md".force = true;
+        "${config.home.homeDirectory}/.claude/settings.json".force = true;
       };
     };
 }

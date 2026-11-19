@@ -30,6 +30,19 @@ let
     assert !(h.programs.zed-editor.userSettings ? context_servers);
     assert h.programs.nushell.settings.buffer_editor == "zeditor";
     assert !(has (homePackages h) "herdr");
+    assert h.programs.codex.enable;
+    assert h.programs.codex.mutableSettings;
+    assert h.programs.codex.settings.model == "gpt-6.2-sol";
+    assert h.programs.codex.settings.model_reasoning_effort == "medium";
+    assert h.programs.codex.settings.features.hooks;
+    assert !h.programs.codex.settings.memories.use_memories;
+    assert !(h.home.file ? ".codex/config.toml");
+    assert h.programs.claude-code.enable;
+    assert h.programs.claude-code.package ? buildSpec;
+    assert h.programs.claude-code.settings.defaultMode == "bypassPermissions";
+    assert h.programs.pi-coding-agent.enable;
+    assert h.programs.pi-coding-agent.package ? buildSpec;
+    assert h.programs.pi-coding-agent.settings.defaultProvider == "github-copilot";
     assert h.programs.ghostty.enable;
     assert has h.programs.ghostty.settings.font-family "Monaspace Neon";
     assert lib.all (has (homePackages h)) [
@@ -85,8 +98,8 @@ let
     assert has (casks c) "protonvpn";
     assert !(has (packages c) "proton-vpn");
     assert builtins.length (casks c) == builtins.length (lib.unique (casks c));
-    assert builtins.pathExists (home c).home.file.".pi/agent/settings.json".source;
-    assert builtins.pathExists (home c).home.file.".claude/CLAUDE.md".source;
+    assert (home c).home.file."${(home c).home.homeDirectory}/.pi/agent/settings.json".force;
+    assert builtins.pathExists (home c).programs.claude-code.context;
     true;
 in
 assert f.darwinConfigurations ? iridium;
