@@ -9,14 +9,46 @@ let
   packages = c: map (p: p.pname or p.name) (home c).home.packages;
   casks = c: map (p: p.name) c.homebrew.casks;
   has = xs: x: builtins.elem x xs;
+  homePackages = h: map (p: p.pname or p.name) h.home.packages;
+  commonHome =
+    h:
+    assert h.home.username == "brightone";
+    assert h.home.stateVersion == "26.05";
+    assert h.programs.emacs.enable;
+    assert h.programs.google-chrome.enable;
+    assert h.programs.zed-editor.enable && h.programs.zed-editor.defaultEditor;
+    assert !h.programs.zed-editor.mutableUserSettings;
+    assert !h.programs.zed-editor.mutableUserKeymaps;
+    assert !h.programs.zed-editor.mutableUserTasks;
+    assert !h.programs.zed-editor.mutableUserDebug;
+    assert lib.all (has h.programs.zed-editor.extensions) [
+      "nix"
+      "zedokai"
+    ];
+    assert has (homePackages h) "nerd-fonts-monaspace";
+    assert h.programs.zed-editor.userSettings.agent_servers."codex-acp".type == "registry";
+    assert !(h.programs.zed-editor.userSettings ? context_servers);
+    assert h.programs.nushell.settings.buffer_editor == "zeditor";
+    assert !(has (homePackages h) "herdr");
+    assert h.programs.ghostty.enable;
+    assert has h.programs.ghostty.settings.font-family "Monaspace Neon";
+    assert lib.all (has (homePackages h)) [
+      "monaspace"
+      "raycast"
+      "proton-pass"
+      "lmstudio"
+    ];
+    assert h.programs.nushell.loadSessionVariables;
+    assert h.programs.ripgrep.enable && h.programs.fd.enable;
+    assert h.programs.grep.enable && h.programs.mise.enable;
+    assert h.programs.mise.globalConfig.tools == { };
+    true;
+  standaloneSilicon = f.homeConfigurations."brightone@silicon";
+  standaloneIridium = f.homeConfigurations."brightone@iridium";
   common =
     c:
     assert c.system.stateVersion == 6;
-    assert (home c).home.stateVersion == "26.05";
-    assert (home c).home.username == "brightone";
-    assert (home c).programs.ghostty.enable;
-    assert (home c).programs.nushell.loadSessionVariables;
-    assert (home c).programs.mise.globalConfig.tools == { };
+    assert commonHome (home c);
     assert lib.hasSuffix "/opt/homebrew/bin:/opt/homebrew/sbin" c.environment.systemPath;
     assert (home c).programs.nh.flake == "/Users/brightone/dev/github.com/Br1ght0ne/nix-flake";
     assert lib.all (has (packages c)) [
@@ -31,23 +63,27 @@ let
     assert
       !((lib.findFirst (p: (p.pname or p.name) == "codex") null (home c).home.packages) ? buildSpec);
     assert lib.all (x: !(has (casks c) x)) [
+      "lm-studio"
+      "proton-pass"
       "ghostty"
       "emacs-app"
       "linear"
+      "raycast"
+      "zed"
+      "chatgpt"
+      "slack"
     ];
     assert c.system.keyboard.nonUS.remapComparisonSigns;
     assert c.homebrew.onActivation.cleanup == "none";
     assert lib.all (has (packages c)) [
       "codex"
-      "emacs"
+      "raycast"
       "thaw"
     ];
     assert !(has (packages c) "rustup");
-    assert lib.all (has (casks c)) [
-      "raycast"
-      "zed"
-      "telegram"
-    ];
+    assert has (casks c) "telegram";
+    assert has (casks c) "protonvpn";
+    assert !(has (packages c) "proton-vpn");
     assert builtins.length (casks c) == builtins.length (lib.unique (casks c));
     assert builtins.pathExists (home c).home.file.".pi/agent/settings.json".source;
     assert builtins.pathExists (home c).home.file.".claude/CLAUDE.md".source;
@@ -55,29 +91,117 @@ let
 in
 assert f.darwinConfigurations ? iridium;
 assert common silicon && common iridium;
-assert (home iridium).programs.ripgrep.enable && (home iridium).programs.fd.enable;
-assert (home iridium).programs.grep.enable && (home iridium).programs.mise.enable;
+assert commonHome standaloneSilicon.config && commonHome standaloneIridium.config;
+assert lib.all (has (homePackages standaloneSilicon.config)) [
+  "nethack"
+  "pnpm"
+];
+assert !(has (homePackages standaloneSilicon.config) "gather-v2");
+assert lib.all (has (homePackages standaloneIridium.config)) [
+  "rustc"
+  "cargo"
+  "nodejs"
+  "bun"
+  "linear"
+  "orbstack"
+  "chatgpt"
+  "slack"
+  "gather-v2"
+];
+assert lib.all (x: !(has (homePackages standaloneIridium.config) x)) [
+  "nethack"
+  "pnpm"
+];
 assert lib.all (has (packages iridium)) [
   "rustc"
   "cargo"
   "nodejs"
   "bun"
   "linear"
-  "gather-v2"
-];
-assert lib.all (has (casks iridium)) [
+  "orbstack"
   "chatgpt"
   "slack"
-  "herdr-app"
+  "gather-v2"
 ];
+assert !(has (casks iridium) "herdr-app");
+assert !(has (casks silicon) "herdr-app");
+assert silicon.homebrew.taps == [ ] && iridium.homebrew.taps == [ ];
+assert lib.all (x: !(has (casks silicon) x)) [
+  "alt-tab"
+  "codexbar"
+  "discord"
+  "google-chrome"
+  "losslesscut"
+  "lunar"
+  "obsidian"
+  "imhex"
+  "shortcat"
+  "tailscale-app"
+  "thunderbird"
+  "trex"
+  "whatsapp"
+  "font-cozette"
+  "font-dejavu"
+  "font-hack-nerd-font"
+  "font-lilex-nerd-font"
+  "font-monaspice-nerd-font"
+  "font-monocraft"
+];
+assert !(silicon.homebrew.masApps ? Keymapp) && !(silicon.homebrew.masApps ? WhatsApp);
+assert lib.all
+  (
+    h:
+    assert h.programs.obsidian.enable && h.programs.thunderbird.enable && h.programs.discord.enable;
+    lib.all (has (homePackages h)) [
+      "alt-tab-macos"
+      "codexbar"
+      "discord"
+      "google-chrome"
+      "losslesscut"
+      "lunar"
+      "obsidian"
+      "shortcat"
+      "tailscale-gui"
+      "thunderbird-bin"
+      "trex"
+      "whatsapp-for-mac"
+      "keymapp"
+      "cozette"
+      "dejavu-fonts"
+      "monocraft"
+      "imhex"
+    ]
+  )
+  [
+    (home silicon)
+    standaloneSilicon.config
+  ];
+assert lib.all
+  (
+    h:
+    lib.all (x: !(has (homePackages h) x)) [
+      "discord"
+      "obsidian"
+      "keymapp"
+    ]
+  )
+  [
+    (home iridium)
+    standaloneIridium.config
+  ];
 assert !(has (packages silicon) "gather-v2");
 assert silicon.services.paneru.enable;
+assert has (packages silicon) "moonlight-qt";
+assert !(has (casks silicon) "moonlight");
 assert silicon.networking.hostName == "silicon";
 assert iridium.networking.hostName == "iridium";
 assert builtins.isString f.darwinConfigurations.silicon.system.drvPath;
 assert builtins.isString f.darwinConfigurations.iridium.system.drvPath;
 assert builtins.isString f.homeConfigurations."brightone@iridium".activationPackage.drvPath;
-assert f.homeConfigurations.brightone.config.programs.ghostty.enable;
+assert builtins.isString standaloneSilicon.activationPackage.drvPath;
+assert
+  f.homeConfigurations.brightone.activationPackage.drvPath
+  == standaloneSilicon.activationPackage.drvPath;
 assert !(iridium.services.paneru.enable or false);
 assert has (packages silicon) "nethack";
 assert !(has (packages iridium) "nethack");

@@ -2,7 +2,7 @@
   den.aspects.shell.homeManager = { pkgs, ... }: {
     # Shells
     programs.zsh.enable = true;
-    # Local installers put LM Studio and Herdr launchers here. Append them so
+    # Local installers put optional application launchers here. Append them so
     # they cannot override Nix-managed tools; HM loads this for zsh and Nushell.
     home.sessionVariablesExtra = ''
       for local_bin in "$HOME/.lmstudio/bin" "$HOME/.local/bin"; do
@@ -20,7 +20,7 @@
       loadSessionVariables = true;
       enable = true;
       settings = {
-        buffer_editor = "zed";
+        buffer_editor = "zeditor";
         show_banner = false;
       };
 

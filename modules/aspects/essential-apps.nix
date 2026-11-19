@@ -1,30 +1,24 @@
 {
   den.aspects.essential-apps.homeManager = { pkgs, ... }: {
+    programs.emacs.enable = true;
+    # Replace the login item removed with the old Homebrew installation.
+    launchd.agents.raycast = {
+      enable = true;
+      config = {
+        ProgramArguments = [ "${pkgs.raycast}/Applications/Raycast.app/Contents/MacOS/Raycast" ];
+        RunAtLoad = true;
+      };
+    };
     home.packages = [
-      pkgs.emacs
+      pkgs.raycast
+      pkgs.proton-pass
       (pkgs.callPackage ../../packages/thaw { })
     ];
   };
-  den.aspects.essential-apps.darwin = { lib, ... }: {
-    # GUI-launched Nushell loads system.build.setEnvironment, not path_helper.
-    # Keep Nix-managed tools ahead of equivalent Homebrew installations.
-    environment.systemPath = lib.mkAfter [
-      "/opt/homebrew/bin"
-      "/opt/homebrew/sbin"
-    ];
-    homebrew = {
-      enable = true;
-      onActivation = {
-        autoUpdate = false;
-        upgrade = false;
-        cleanup = "none";
-      };
-      caskArgs.require_sha = true;
-      casks = [
-        "raycast"
-        "telegram"
-        "zed"
-      ];
-    };
-  };
+  # Keep the native Telegram client; nixpkgs packages Telegram Desktop.
+  den.aspects.essential-apps.darwin.homebrew.casks = [
+    # macOS requires the real app in /Applications to activate its extensions.
+    "protonvpn"
+    "telegram"
+  ];
 }

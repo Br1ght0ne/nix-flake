@@ -1,36 +1,43 @@
 {
+  den.aspects.personal-apps.homeManager = { pkgs, ... }: {
+    programs.discord.enable = true;
+    programs.google-chrome.enable = true;
+    programs.obsidian.enable = true;
+    programs.thunderbird = {
+      enable = true;
+      package = pkgs.thunderbird-bin;
+    };
+    home.packages = with pkgs; [
+      alt-tab-macos
+      codexbar
+      imhex
+      losslesscut-bin
+      lunar
+      shortcat
+      tailscale-gui
+      trex
+      whatsapp-for-mac
+      keymapp
+
+      # Fonts are installed by Home Manager's native Darwin font activation.
+      cozette
+      dejavu_fonts
+      nerd-fonts.hack
+      nerd-fonts.lilex
+      monocraft
+    ];
+  };
   den.aspects.personal-apps.darwin = {
     homebrew = {
       casks = [
-        "alt-tab"
         "anki"
         "calibre"
-        "codexbar"
-        "discord"
         "flux-app"
-        "font-cozette"
-        "font-dejavu"
-        "font-hack-nerd-font"
-        "font-lilex-nerd-font"
-        "font-monaspace"
-        "font-monaspice-nerd-font"
-        "font-monocraft"
-        "google-chrome"
         "ilspy"
-        "imhex"
         "latest"
-        "losslesscut"
-        "lunar"
         "neat"
-        "obsidian"
         "ollama-app"
         "postgres-app"
-        "protonvpn"
-        "shortcat"
-        "tailscale-app"
-        "thunderbird"
-        "trex"
-        "whatsapp"
         "zen"
       ];
       masApps = {
@@ -42,7 +49,6 @@
         "DigiDoc4" = 1370791134;
         "Fantastical" = 975937182;
         "Gemini 2" = 1090488118;
-        "Keymapp" = 6472865291;
         "LanguageTool" = 1534275760;
         "Negative" = 1378123825;
         "Orb" = 6477840170;
@@ -50,7 +56,6 @@
         "Raycast Companion" = 6738274497;
         "The Unarchiver" = 425424353;
         "Velja" = 1607635845;
-        "WhatsApp" = 310633997;
       };
     };
   };

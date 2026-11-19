@@ -1,6 +1,21 @@
 {
-  den.aspects.system.darwin = {
+  den.aspects.system.darwin = { lib, ... }: {
     imports = [ ../_darwin/keyboard.nix ];
+    # Shared infrastructure for the apps that still need Homebrew.
+    # GUI-launched Nushell loads this environment without path_helper.
+    environment.systemPath = lib.mkAfter [
+      "/opt/homebrew/bin"
+      "/opt/homebrew/sbin"
+    ];
+    homebrew = {
+      enable = true;
+      onActivation = {
+        autoUpdate = false;
+        upgrade = false;
+        cleanup = "none";
+      };
+      caskArgs.require_sha = true;
+    };
     nix.enable = false;
     system.stateVersion = 6;
     system.primaryUser = "brightone";

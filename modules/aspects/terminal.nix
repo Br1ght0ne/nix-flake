@@ -1,5 +1,8 @@
 {
   den.aspects.terminal.homeManager = { pkgs, ... }: {
+    # Keep the configured font available in integrated and standalone homes.
+    home.packages = [ pkgs.monaspace ];
+
     # Terminals
     programs.ghostty = {
       enable = true;

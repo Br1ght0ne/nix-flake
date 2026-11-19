@@ -159,7 +159,7 @@
         pi-unboxed
 
         # orchestration
-        pkgs.herdr
+        pkgs.lmstudio
         (pkgs.callPackage ../../packages/orca { })
       ];
 
