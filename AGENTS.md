@@ -9,8 +9,10 @@ Personal and work macOS configuration using Den, nix-darwin and Home Manager.
 - `modules/aspects/`: named Den aspects, containing `darwin`, `homeManager`, or both.
 - `modules/aspects/brightone.nix`: minimal shared user/home identity.
 - `modules/_darwin/keyboard.nix`: ordinary Darwin module, imported by the system aspect.
-- `modules/_assets/agents/`: shared Codex/Claude/Pi instructions, settings and extensions.
+- `modules/_assets/agents/`: shared Codex/Claude/Pi instructions and Pi extensions.
 - `modules/default.nix`: explicit aspect imports. Add new aspect files here.
+- Hosts and homes are declared through Den; there are no `systems/` or `homes/`
+  discovery directories. Ordinary modules and local packages use explicit imports.
 - `tests/configuration.nix`: evaluated host selection assertions.
 - `logs/`: freeform notes; not built.
 
@@ -57,23 +59,56 @@ hosts that need it. Home Manager packages belong under `homeManager`; Homebrew
 belongs under `darwin`. A feature may use both classes in the same file.
 Default to nixpkgs when adding software. Use Homebrew only when explicitly
 requested or when a suitable nixpkgs package is unavailable.
+For GUI migrations, use upstream binary distributions or verify that the exact
+Darwin output is available on `https://cache.nixos.org` before adopting a
+source-built package. Recheck this when updating nixpkgs; do not assume cache
+availability carries across pins. Zed, ImHex, Moonlight and AltTab are the current
+source-built GUI exceptions verified in that cache. Nix may build small wrappers
+and configuration files locally; it must not require compiling those GUI apps.
 
-- `essential-apps`: Emacs from Nix; Raycast, Telegram and Zed from Homebrew.
-  These started from the intersection of iridium's installed casks and the old configuration.
-- `work-dev`: nixpkgs Rust/Cargo, Node, Bun, ripgrep, fd, GNU grep and mise;
-  Linear, OrbStack and Gather V2 from Nix; Homebrew Herdr, ChatGPT and Slack. Zed/Telegram come from essentials.
-- `terminal`: Ghostty from Nix, including its settings.
-- `ai-agents`: sandboxed Claude/Pi plus unboxed commands; plain `codex` retains
-  Codex's normal defaults for IDE compatibility. Opt-in `codex-boxed` uses
+- `essential-apps`: Home Manager Emacs; Raycast, Proton Pass and Thaw from Nix.
+  Raycast starts at login through Home Manager launchd.
+  The native macOS Telegram client remains on Homebrew (nixpkgs has Telegram Desktop).
+  ProtonVPN also uses Homebrew: macOS requires its real app in `/Applications`
+  to activate network extensions; the Home Manager location fails at runtime.
+- `shell`: shared shell tools, including ripgrep, fd, GNU grep and mise.
+- `editors`: Helix, Neovim and Zed through Home Manager. Doom user files
+  (`config.el`, `init.el`, `packages.el`) come from `modules/_assets/doom`; its
+  checkout and package state remain unmanaged and writable. Zed uses the older
+  declarative settings plus Codex ACP. Settings are immutable and must be edited
+  in Nix; MCP servers are not configured. Do not put API keys in Nix settings.
+- `work-dev`: nixpkgs Rust/Cargo, Node, Bun, Linear, OrbStack, ChatGPT, Slack,
+  Chrome and Gather V2.
+- `terminal`: Ghostty and its Monaspace font from Nix, including terminal settings.
+- `ai-agents`: Home Manager Codex, Claude and Pi modules own instructions and
+  settings. Claude/Pi retain their sandboxed packages and unboxed commands.
+  Plain `codex` retains Codex's normal sandbox defaults. Home Manager merges
+  model, reasoning, terminal-title, hook and memory preferences into writable
+  local config, preserving IDE integration paths, plugin state and project trust.
+  Opt-in `codex-boxed` uses
   `--no-daemon --dangerously-bypass-approvals-and-sandbox` inside the outer sandbox;
-  its hook and terminal compatibility is unfinished. Global Codex instructions use the shared
-  `modules/_assets/agents/AGENTS.md`; other local Codex settings are not managed.
+  its hook and terminal compatibility is unfinished. Orca and LM Studio
+  are installed through Nix. LM Studio preferences are merged into its writable
+  settings at activation; tokens and runtime state remain local. Quit LM Studio
+  before switching to avoid concurrent writes. Shared instructions remain in
+  `modules/_assets/agents/AGENTS.md`; Pi extensions remain ordinary source assets.
 - `personal-dev`: the remaining broad personal package collection.
-- `gaming`, `personal-apps`, `window-management`: silicon-only additions.
+- `personal-apps`: Home Manager Discord, Chrome, Obsidian and Thunderbird; supported native apps
+  and fonts from nixpkgs. Remaining casks and Mac App Store apps are Darwin-only.
+- `gaming`, `window-management`: silicon-only additions; Moonlight comes from Nix.
 
 Homebrew auto-update and upgrade are disabled. Cleanup is `none`: manually
-installed packages are not removed. Existing Homebrew Ghostty/Codex installations
-are not automatically uninstalled. Casks require checksums.
+installed packages are not removed. Apps migrated to Nix may still have old
+Homebrew copies; remove those only after activation and runtime verification.
+Casks require checksums. No extra Homebrew taps are declared; Orca uses the local
+Nix package, so the old `stablyai/orca` tap is unnecessary.
+
+Remaining Brew exceptions are intentional: Calibre is marked broken on Darwin
+at the current pin; Anki and Shattered Pixel Dungeon lack equivalent native app
+bundles; Heroic and Parsec lack Darwin packages; the other retained casks have
+no equivalent packaged native application at this pin. Do not replace Postgres.app,
+Ollama.app or the native Telegram client with CLI-only or different clients merely
+to reduce the cask count.
 
 ## Validation and formatting
 
@@ -101,11 +136,11 @@ Keep existing pins unless an update is requested. `nix flake update` updates all
 inputs; `nix flake update INPUT` updates one. Keep lockfile updates readable and
 separate unrelated upgrades from configuration changes.
 
-Den replaces Snowfall entirely. Custom packages live under `packages/`: Cataclysm
-and the official Gather V2 macOS binary. Neither my-packages nor snowfall-lib is an input. `llm-agents` intentionally has its own nixpkgs pin. Other package
+Den assembles all host and home configurations. Custom packages live under
+`packages/`: Cataclysm, the official Gather V2 macOS binary, Orca and Thaw.
+`llm-agents` intentionally has its own nixpkgs pin. Other package
 inputs follow the primary nixpkgs where configured. Paneru remains available for
-silicon. No nixpkgs-stable input is currently declared; the old disabled Zed HM
-configuration retains a dormant reference to it and must be revisited before enabling.
+silicon. Zed uses the default nixpkgs package through Home Manager.
 
 Use `typos` for spelling checks; exceptions live in `.typos.toml`.
 

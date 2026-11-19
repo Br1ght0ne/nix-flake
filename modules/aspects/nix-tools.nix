@@ -21,7 +21,6 @@
         # Language servers
         nil
         nixd
-        # snowfallorg.flake
         nixpkgs-hammering
         nixpkgs-reviewFull
         nurl
