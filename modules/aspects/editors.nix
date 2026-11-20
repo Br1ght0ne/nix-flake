@@ -1,4 +1,4 @@
-{ ... }: {
+{
   den.aspects.editors.homeManager =
     {
       pkgs,
@@ -15,6 +15,7 @@
         "doom/packages.el".source = ../_assets/doom/packages.el;
       };
 
+      programs.emacs.enable = true;
       programs.helix.enable = true;
       programs.neovim.enable = true;
 

@@ -1,4 +1,12 @@
+{ den, ... }:
+let
+  nixpkgsConfig = import ../../nixpkgs-config.nix;
+in
 {
+  den.default.darwin.nixpkgs.config = nixpkgsConfig;
+  den.default.homeManager.nixpkgs.config = nixpkgsConfig;
+
+  den.aspects.system.includes = [ den.batteries.hostname ];
   den.aspects.system.darwin = { lib, ... }: {
     imports = [ ../_darwin/keyboard.nix ];
     # Shared infrastructure for the apps that still need Homebrew.
@@ -16,9 +24,14 @@
       };
       caskArgs.require_sha = true;
     };
+    home-manager = {
+      # Use the same package policy for integrated and standalone homes.
+      useGlobalPkgs = false;
+      useUserPackages = true;
+      backupFileExtension = "before-den";
+    };
     nix.enable = false;
     system.stateVersion = 6;
-    system.primaryUser = "brightone";
     system.defaults = {
       menuExtraClock = {
         Show24Hour = true;

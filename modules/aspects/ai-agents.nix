@@ -196,7 +196,7 @@
 
         # orchestration
         pkgs.lmstudio
-        (pkgs.callPackage ../../packages/orca { })
+        (pkgs.callPackage ../../packages/orca/package.nix { })
       ];
 
       # LM Studio needs a writable file. Merge only declared preferences using

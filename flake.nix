@@ -11,6 +11,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     den.url = "github:denful/den";
+    import-tree.url = "github:vic/import-tree";
 
     darwin = {
       url = "github:nix-darwin/nix-darwin";
@@ -39,6 +40,7 @@
 
     paneru = {
       url = "github:karinushka/paneru";
+      inputs.import-tree.follows = "import-tree";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -50,44 +52,8 @@
 
   outputs =
     inputs:
-    let
-      pkgsFor =
-        system:
-        import inputs.nixpkgs {
-          inherit system;
-          config = import ./nixpkgs-config.nix;
-        };
-      config =
-        (inputs.nixpkgs.lib.evalModules {
-          modules = [ ./modules ];
-          specialArgs = { inherit inputs; };
-        }).config;
-      systems = [
-        "aarch64-darwin"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "x86_64-linux"
-      ];
-    in
-    config.flake
-    // {
-      formatter = inputs.nixpkgs.lib.genAttrs systems (system: (pkgsFor system).nixfmt);
-      # Keep the old personal-home name and expose explicit profiles for both hosts.
-      homeConfigurations = config.flake.homeConfigurations // {
-        brightone = config.flake.homeConfigurations."brightone@silicon";
-      };
-      packages.aarch64-darwin.cataclysm-dda-git-bin =
-        (pkgsFor "aarch64-darwin").callPackage ./packages/cataclysm/cataclysm-dda-git-bin
-          { };
-      packages.aarch64-darwin.gather-v2 = (pkgsFor "aarch64-darwin").callPackage ./packages/gather-v2 { };
-      packages.aarch64-darwin.orca = (pkgsFor "aarch64-darwin").callPackage ./packages/orca { };
-      packages.aarch64-darwin.thaw = (pkgsFor "aarch64-darwin").callPackage ./packages/thaw { };
-      checks.aarch64-darwin.configuration =
-        let
-          result = import ./tests/configuration.nix inputs.self;
-        in
-        assert result.silicon && result.iridium;
-        (pkgsFor "aarch64-darwin").runCommand "configuration-check" { } "touch $out";
-      darwinModules.keyboard = import ./modules/_darwin/keyboard.nix;
-    };
+    (inputs.nixpkgs.lib.evalModules {
+      modules = [ (inputs.import-tree ./modules) ];
+      specialArgs = { inherit inputs; };
+    }).config.flake;
 }

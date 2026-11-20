@@ -349,7 +349,9 @@
       "inputs": {
         "crane": "crane_2",
         "flake-parts": "flake-parts_2",
-        "import-tree": "import-tree",
+        "import-tree": [
+          "import-tree"
+        ],
         "nix-darwin": "nix-darwin",
         "nixpkgs": [
           "nixpkgs"
@@ -376,6 +378,7 @@
         "darwin": "darwin",
         "den": "den",
         "home-manager": "home-manager",
+        "import-tree": "import-tree",
         "llm-agents": "llm-agents",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",

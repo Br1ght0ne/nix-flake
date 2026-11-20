@@ -1,7 +1,6 @@
 {
   den.aspects.personal-apps.homeManager = { pkgs, ... }: {
     programs.discord.enable = true;
-    programs.google-chrome.enable = true;
     programs.obsidian.enable = true;
     programs.thunderbird = {
       enable = true;

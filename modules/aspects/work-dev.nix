@@ -1,7 +1,6 @@
 {
   den.aspects.work-dev = {
     homeManager = { pkgs, ... }: {
-      programs.google-chrome.enable = true;
       home.packages = with pkgs; [
         rustc
         cargo
@@ -11,7 +10,7 @@
         orbstack
         chatgpt
         slack
-        (pkgs.callPackage ../../packages/gather-v2 { })
+        (pkgs.callPackage ../../packages/gather-v2/package.nix { })
       ];
     };
   };

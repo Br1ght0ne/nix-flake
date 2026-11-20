@@ -5,4 +5,4 @@ Copied from Br1ght0ne/nix-packages at revision
 Only the experimental binary package is used, by silicon's gaming aspect.
 The source URL, timestamp, hash and packaging behavior are preserved.
 
-Update `cataclysm-dda-git-bin/default.nix` to change its release and hash.
+Update `package.nix` to change its release and hash.
