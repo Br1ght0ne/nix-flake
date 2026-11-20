@@ -131,6 +131,7 @@
         # Language servers
         nil
         nixd
+        nix-update
         nixpkgs-hammering
         nixpkgs-reviewFull
         nurl
