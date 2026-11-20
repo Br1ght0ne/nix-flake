@@ -1,14 +1,17 @@
 {
   den.aspects.vcs.homeManager =
     { pkgs, ... }:
+    let
+      user = {
+        name = "Oleksii Filonenko";
+        email = "github@brightone.cloud";
+      };
+    in
     {
       # Git
       programs.git = {
         enable = true;
-        settings = {
-          user.name = "Br1ght0ne";
-          user.email = "12615679+Br1ght0ne@users.noreply.github.com";
-        };
+        settings = { inherit user; };
         signing.key = "5337CD105484F2C839865B01524CFA23C413B905";
       };
       programs.gh = {
@@ -85,10 +88,7 @@
           };
           revsets.bookmark-advance-to = "closest_pushable(@)";
           ui.default-command = "log";
-          user = {
-            name = "Oleksii Filonenko";
-            email = "github@brightone.cloud";
-          };
+          inherit user;
         };
       };
       programs.jjui.enable = true;
