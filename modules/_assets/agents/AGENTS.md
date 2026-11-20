@@ -1,3 +1,8 @@
+# Local commits
+
+After the relevant checks pass, commit your task’s changes locally before
+replying. Keep unrelated changes out of the commit. Ask before pushing.
+
 # Sandbox environment
 
 For `claude`, `pi`, and `codex-boxed` launched through `agent-sandbox.nix`, the
