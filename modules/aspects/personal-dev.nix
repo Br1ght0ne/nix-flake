@@ -8,14 +8,10 @@
     {
       home.packages = (
         with pkgs;
-        # Work
         [
           pnpm
-        ]
-        ++ [
           act
           age
-          # aider-chat
           angle-grinder
           ast-grep
           beancount
@@ -25,7 +21,6 @@
           devenv
           # direnv  # substituteStream() in derivation direnv-2.37.1: ERROR: pattern -linkmode=external doesn't match anything in file 'GNUmakefile'
           discordo
-          # diskonaut # unmaintained
           docker-language-server
           dos2unix
           doxx
@@ -33,20 +28,11 @@
           dua
           dufs
           dust
-          # elixir
           entr
-          # erlang
           exercism
-          # exiftool
-          # fava
-          # fish
-          # foundry
           libusb1 # for foundryup
           gawk
           genact
-          # git-lfs
-          # git-workspace
-          # gleam
           glow
           gnuplot
           gnused
@@ -58,40 +44,29 @@
           hck
           hledger
           httpie
-          # hurl
           hyperfine
           id3v2
           ijq
           immich-go
           isync
           katana
-          # kingfisher - not in nixpkgs yet
           kondo
           kubernetes-helm
-          # ledger
           lstr
-          # lua-language-server
           luaPackages.fennel
           luarocks
-          # lychee
           lynx
           melt
           miniserve
-          # mise
           mmv
-          # mosh
           ncdu
           neonmodem
-          # nodejs
-          # nomino
           ouch
-          # parallel
           pipenv
           pqrs
           presenterm
           q
           rsync
-          # rust-analyzer
           sccache
           shellcheck
           shfmt
@@ -101,7 +76,6 @@
           stylua
           tailspin
           taplo
-          # tealdeer
           tgpt
           tinymist
           trash-cli
@@ -111,22 +85,15 @@
           typos
           typst
           unar
-          # TODO: re-enable once ffmpeg builds on aarch64-darwin (malformed 64-bit version linker error)
-          # vhs
-          # w3m
+          # vhs and yazi need an ffmpeg build that works on aarch64-darwin.
           wabt
-          # wakeonlan
           watchexec
           websocat
           wget
           wishlist
           xdg-ninja
           xan # maintained fork of xsv
-          # xsv
           worktrunk
-          # yaml-language-server
-          # TODO: re-enable once ffmpeg builds on aarch64-darwin (malformed 64-bit version linker error)
-          # yazi
           yq
           yubikey-manager
         ]
