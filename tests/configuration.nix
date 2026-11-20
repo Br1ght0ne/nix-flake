@@ -46,6 +46,7 @@ let
     assert h.programs.ghostty.enable;
     assert has h.programs.ghostty.settings.font-family "Monaspace Neon";
     assert lib.all (has (homePackages h)) [
+      "just"
       "monaspace"
       "raycast"
       "proton-pass"

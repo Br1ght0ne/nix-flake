@@ -76,7 +76,7 @@ files locally; it must not require compiling those GUI apps.
   ProtonVPN also uses Homebrew: macOS requires its real app in `/Applications`
   to activate network extensions; the Home Manager location fails at runtime.
 - `shell`: Nushell, Zsh, Ghostty with Monaspace, and shared CLI and Nix tools,
-  including ripgrep, fd, GNU grep and mise.
+  including ripgrep, fd, GNU grep, mise and just.
 - `editors`: Emacs, Helix, Neovim and Zed through Home Manager. Doom user files
   (`config.el`, `init.el`, `packages.el`) come from `modules/_assets/doom`; its
   checkout and package state remain unmanaged and writable. Zed uses the older

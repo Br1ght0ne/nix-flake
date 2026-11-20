@@ -64,7 +64,6 @@
           ijq
           immich-go
           isync
-          just
           katana
           # kingfisher - not in nixpkgs yet
           kondo
