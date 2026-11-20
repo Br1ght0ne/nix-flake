@@ -7,11 +7,11 @@
 
 stdenvNoCC.mkDerivation rec {
   pname = "orca";
-  version = "1.4.258";
+  version = "1.4.265";
 
   src = fetchurl {
     url = "https://github.com/stablyai/orca/releases/download/v${version}/Orca-${version}-arm64-mac.zip";
-    hash = "sha256-bswAbz8tJTHD8mNLpNEThis+5ypyXtY6ybG389c6U0Y=";
+    hash = "sha256-MS3uU0B4MRDPsv10WhNSf4gDrdUcnQLb8vS6iQ2bYdo=";
   };
 
   nativeBuildInputs = [ unzip ];
