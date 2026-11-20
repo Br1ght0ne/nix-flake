@@ -33,6 +33,7 @@ let
     profile: h:
     assert h.home.username == "brightone";
     assert h.home.stateVersion == "26.05";
+    assert !(h.nixpkgs.config.allowUnfree or false);
     assert h.programs.emacs.enable;
     assert h.programs.google-chrome.enable;
     assert h.programs.zed-editor.enable && h.programs.zed-editor.defaultEditor;
@@ -71,7 +72,7 @@ let
       "lmstudio"
     ];
     assert expectAbsent profile "packages" (packageNames h) [ "herdr" ];
-    assert h.programs.nushell.loadSessionVariables;
+    assert h.programs.nushell.enable && h.programs.nushell.loadSessionVariables;
     assert h.programs.ripgrep.enable && h.programs.fd.enable;
     assert h.programs.grep.enable && h.programs.mise.enable;
     assert h.programs.mise.globalConfig.tools == { };
@@ -86,6 +87,12 @@ let
       findPackage = name: lib.findFirst (p: packageName p == name) null h.home.packages;
     in
     assert c.system.stateVersion == 6;
+    assert !(c.nixpkgs.config.allowUnfree or false);
+    assert c.programs.nushell.enable;
+    assert lib.getName c.users.users.brightone.shell == "nushell";
+    assert builtins.elem "/run/current-system/sw/bin/nu" c.environment.shells;
+    assert lib.hasInfix "UserShell /run/current-system/sw/bin/nu"
+      c.system.activationScripts.postActivation.text;
     assert c.system.keyboard.nonUS.remapComparisonSigns;
     assert lib.hasSuffix "/opt/homebrew/bin:/opt/homebrew/sbin" c.environment.systemPath;
     assert h.programs.nh.flake == "/Users/brightone/dev/github.com/Br1ght0ne/nix-flake";

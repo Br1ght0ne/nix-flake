@@ -1,8 +1,9 @@
-{ inputs, ... }: {
+{
   den.aspects.personal-dev.homeManager =
     {
       lib,
       pkgs,
+      inputs',
       ...
     }:
     {
@@ -102,7 +103,7 @@
           pinentry_mac
           zld
         ]
-        ++ [ inputs.concord.packages.${pkgs.stdenv.hostPlatform.system}.concord ]
+        ++ [ inputs'.concord.packages.concord ]
       );
     };
 }

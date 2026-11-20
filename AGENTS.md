@@ -4,15 +4,16 @@ Personal and work macOS configuration using Den, nix-darwin and Home Manager.
 
 ## Layout
 
-- `flake.nix` / `flake.lock`: inputs and Den evaluation.
+- `flake.nix` / `flake.lock`: inputs and flake-parts entry point.
 - `modules/hosts.nix`: host declarations and feature selection.
 - `modules/aspects/`: named Den aspects, containing `darwin`, `homeManager`, or both.
 - `modules/aspects/brightone.nix`: minimal shared user/home identity.
-- `modules/_darwin/keyboard.nix`: ordinary Darwin module, imported by the system aspect.
+- `modules/_system/_darwin/`: ordinary Darwin modules loaded by the system aspect
+  through Den's `import-tree` battery.
 - `modules/_assets/agents/`: shared Codex/Claude/Pi instructions and Pi extensions.
 - `modules/flake-outputs.nix`: formatter, packages, checks and compatibility exports.
 - `import-tree` loads modules under `modules/`. Underscore-prefixed paths such as
-  `_assets/` and `_darwin/` are imported explicitly.
+  `_assets/` and `_system/` are loaded separately.
 - Hosts and homes are declared through Den; there are no `systems/` or `homes/`
   discovery directories. Aspects select packages explicitly.
 - `tests/configuration.nix`: evaluated host selection assertions.
@@ -75,7 +76,7 @@ files locally; it must not require compiling those GUI apps.
   The native macOS Telegram client remains on Homebrew (nixpkgs has Telegram Desktop).
   ProtonVPN also uses Homebrew: macOS requires its real app in `/Applications`
   to activate network extensions; the Home Manager location fails at runtime.
-- `shell`: Nushell, Zsh, Ghostty with Monaspace, and shared CLI and Nix tools,
+- `shell`: Nushell (the login shell on both Macs), Zsh, Ghostty with Monaspace, and shared CLI and Nix tools,
   including ripgrep, fd, GNU grep, mise and just.
 - `editors`: Emacs, Helix, Neovim and Zed through Home Manager. Doom user files
   (`config.el`, `init.el`, `packages.el`) come from `modules/_assets/doom`; its
@@ -132,8 +133,8 @@ full system and home closures. Do not claim a successful build from evaluation a
 
 ## Inputs
 
-`nixpkgs-config.nix` holds the shared nixpkgs policy (`allowUnfree = true`),
-used by Den's Darwin/Home Manager defaults and the flake's package outputs.
+Aspects allow specific unfree packages with Den's `unfree` battery. Gather V2
+is allowed by name in the package outputs that provide it to the work profile.
 Local packages can be built without `NIXPKGS_ALLOW_UNFREE` or `--impure`.
 
 Keep existing pins unless an update is requested. Run `just update-nixpkgs` to
@@ -145,8 +146,11 @@ The preflight evaluates paths and queries cache metadata without building
 packages. Keep lockfile updates readable and separate unrelated upgrades from
 configuration changes.
 
-Den assembles all host and home configurations. Nixpkgs discovers local packages
-from `packages/<name>/package.nix` and exports them under `packages.aarch64-darwin`.
+Den assembles all host and home configurations. Flake-parts assembles the
+per-system outputs, and nixpkgs discovers local packages from
+`packages/<name>/package.nix` for `packages.aarch64-darwin`. Den's `self'` and
+`inputs'` batteries let aspects use `self'.packages.<name>` for local packages
+and `inputs'.<input>.packages.<name>` for packages from other flakes.
 `llm-agents` intentionally has its own nixpkgs pin. Other package
 inputs follow the primary nixpkgs where configured. Paneru remains available for
 silicon. Zed uses the default nixpkgs package through Home Manager.

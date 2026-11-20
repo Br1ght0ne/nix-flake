@@ -2,6 +2,12 @@
 {
   imports = [ inputs.den.flakeModule ];
 
+  den.default.includes = with den.batteries; [
+    self'
+    inputs'
+    flake-scope
+  ];
+
   den.schema.user.classes = [ "homeManager" ];
 
   den.hosts.aarch64-darwin = {

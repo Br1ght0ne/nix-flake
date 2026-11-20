@@ -1,6 +1,16 @@
+{ den, ... }:
 {
   den.aspects.work-dev = {
-    homeManager = { pkgs, ... }: {
+    includes = [
+      (den.batteries.unfree [
+        "chatgpt"
+        "linear"
+        "orbstack"
+        "slack"
+      ])
+    ];
+
+    homeManager = { pkgs, self', ... }: {
       home.packages = with pkgs; [
         rustc
         cargo
@@ -10,7 +20,7 @@
         orbstack
         chatgpt
         slack
-        (pkgs.callPackage ../../packages/gather-v2/package.nix { })
+        self'.packages.gather-v2
       ];
     };
   };

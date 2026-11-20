@@ -1,5 +1,13 @@
+{ den, ... }:
 {
-  den.aspects.essential-apps.homeManager = { pkgs, ... }: {
+  den.aspects.essential-apps.includes = [
+    (den.batteries.unfree [
+      "google-chrome"
+      "raycast"
+    ])
+  ];
+
+  den.aspects.essential-apps.homeManager = { pkgs, self', ... }: {
     programs.google-chrome.enable = true;
     programs.rclone.enable = true;
     services.syncthing.enable = true;
@@ -15,7 +23,7 @@
     home.packages = [
       pkgs.raycast
       pkgs.proton-pass
-      (pkgs.callPackage ../../packages/thaw/package.nix { })
+      self'.packages.thaw
     ];
   };
   den.aspects.essential-apps.darwin.homebrew.casks = [

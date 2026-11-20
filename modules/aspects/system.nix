@@ -1,14 +1,10 @@
 { den, ... }:
-let
-  nixpkgsConfig = import ../../nixpkgs-config.nix;
-in
 {
-  den.default.darwin.nixpkgs.config = nixpkgsConfig;
-  den.default.homeManager.nixpkgs.config = nixpkgsConfig;
-
-  den.aspects.system.includes = [ den.batteries.hostname ];
+  den.aspects.system.includes = [
+    den.batteries.hostname
+    (den.batteries.import-tree ../_system)
+  ];
   den.aspects.system.darwin = { lib, ... }: {
-    imports = [ ../_darwin/keyboard.nix ];
     # Shared infrastructure for the apps that still need Homebrew.
     # GUI-launched Nushell loads this environment without path_helper.
     environment.systemPath = lib.mkAfter [

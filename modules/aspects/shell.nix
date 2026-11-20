@@ -24,7 +24,6 @@
       programs = {
         zsh.enable = true;
         nushell = {
-          enable = true;
           # Load the generated Darwin and Home Manager environment once.
           loadSessionVariables = true;
           settings = {

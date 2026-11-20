@@ -1,9 +1,9 @@
 {
-  den.aspects.gaming.homeManager = { pkgs, ... }: {
+  den.aspects.gaming.homeManager = { pkgs, self', ... }: {
     home.packages = [
       pkgs.nethack
       pkgs.moonlight-qt
-      (pkgs.callPackage ../../packages/cataclysm-dda-git-bin/package.nix { })
+      self'.packages.cataclysm-dda-git-bin
     ];
   };
   den.aspects.gaming.darwin.homebrew.casks = [

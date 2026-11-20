@@ -1,14 +1,18 @@
-{ inputs, ... }: {
+{ den, inputs, ... }: {
+  den.aspects.ai-agents.includes = [ (den.batteries.unfree [ "lmstudio" ]) ];
+
   den.aspects.ai-agents.homeManager =
     {
       pkgs,
+      self',
+      inputs',
       config,
       lib,
       ...
     }:
     let
       sandbox = inputs.agent-sandbox.lib.${pkgs.stdenv.hostPlatform.system};
-      llm = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
+      llm = inputs'.llm-agents.packages;
 
       # Explicit preference allowlist: never import LM Studio's live JSON into
       # the store, since it also contains tokens and application-owned state.
@@ -196,7 +200,7 @@
 
         # orchestration
         pkgs.lmstudio
-        (pkgs.callPackage ../../packages/orca/package.nix { })
+        self'.packages.orca
       ];
 
       # LM Studio needs a writable file. Merge only declared preferences using

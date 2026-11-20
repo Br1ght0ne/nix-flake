@@ -1,8 +1,8 @@
-{ inputs, ... }: {
-  den.aspects.window-management.darwin = { ... }: {
-    imports = [ inputs.paneru.darwinModules.paneru ];
+{
+  den.aspects.window-management = { inputs }: {
+    darwin.imports = [ inputs.paneru.darwinModules.paneru ];
 
-    services.paneru = {
+    darwin.services.paneru = {
       enable = true;
       settings = {
         options = {

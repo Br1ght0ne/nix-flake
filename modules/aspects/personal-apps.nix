@@ -1,4 +1,17 @@
+{ den, ... }:
 {
+  den.aspects.personal-apps.includes = [
+    (den.batteries.unfree [
+      "discord"
+      "keymapp"
+      "lunar"
+      "obsidian"
+      "shortcat"
+      "tailscale-gui"
+      "whatsapp-for-mac"
+    ])
+  ];
+
   den.aspects.personal-apps.homeManager = { pkgs, ... }: {
     programs.discord.enable = true;
     programs.obsidian.enable = true;
