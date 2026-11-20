@@ -65,9 +65,10 @@ requested or when a suitable nixpkgs package is unavailable.
 For GUI migrations, use upstream binary distributions or verify that the exact
 Darwin output is available on `https://cache.nixos.org` before adopting a
 source-built package. Recheck this when updating nixpkgs; do not assume cache
-availability carries across pins. Zed, ImHex, Moonlight and AltTab are the current
-source-built GUI exceptions verified in that cache. Nix may build small wrappers
-and configuration files locally; it must not require compiling those GUI apps.
+availability carries across pins. The cache preflight covers AltTab, Emacs,
+ImHex, Moonlight, Sniffnet and Zed. Add new source-built GUI apps to
+`scripts/gui-cache-paths.nix`. Nix may build small wrappers and configuration
+files locally; it must not require compiling those GUI apps.
 
 - `essential-apps`: Chrome, Raycast, Proton Pass, Thaw, rclone and Syncthing.
   Raycast starts at login through Home Manager launchd.
@@ -135,9 +136,14 @@ full system and home closures. Do not claim a successful build from evaluation a
 used by Den's Darwin/Home Manager defaults and the flake's package outputs.
 Local packages can be built without `NIXPKGS_ALLOW_UNFREE` or `--impure`.
 
-Keep existing pins unless an update is requested. `nix flake update` updates all
-inputs; `nix flake update INPUT` updates one. Keep lockfile updates readable and
-separate unrelated upgrades from configuration changes.
+Keep existing pins unless an update is requested. Run `just update-nixpkgs` to
+stage a nixpkgs-only update. It checks the exact `aarch64-darwin` GUI outputs on
+`https://cache.nixos.org` and replaces `flake.lock` only after every lookup
+passes. Run `just check-gui-cache` to check the current pin, including after
+updating multiple inputs manually. Both recipes work on silicon and iridium.
+The preflight evaluates paths and queries cache metadata without building
+packages. Keep lockfile updates readable and separate unrelated upgrades from
+configuration changes.
 
 Den assembles all host and home configurations. Nixpkgs discovers local packages
 from `packages/<name>/package.nix` and exports them under `packages.aarch64-darwin`.
