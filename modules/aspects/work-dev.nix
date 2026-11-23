@@ -16,6 +16,7 @@
         cargo
         nodejs
         bun
+        google-cloud-sdk
         linear
         orbstack
         chatgpt
